@@ -6,351 +6,387 @@
   <title>Ramesh-Personal Portfolio</title>
   
   <!--========== Swiper CSS ==========-->
-
   <link rel="stylesheet" href="css/swiper-bundle.min.css">
 
   <!--========== Main style sheet ==========-->
-
   <link rel="stylesheet" href="css/index.css">
 
-  <!--========== Remixicon ==========-->
+  <!--========== Transitions CSS ==========-->
+  <link rel="stylesheet" href="css/transitions.css">
 
+  <!--========== Remixicon ==========-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
   
-  <!--========== ScrollReveal JS ==========-->
-  
+  <!--========== THREE.js for loading page ==========-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!--========== Animation CSS ==========-->
+  <link rel="stylesheet" href="animation/ani.css">
 </head>
 <body>
 
-  <!--========== Customized cursor ==========-->
+  <!-- ===== LOADING SECTION ===== -->
+  <section id="loadingSection" class="section-container">
+    <canvas id="canvas"></canvas>
+    <div class="loading-image" id="loadingImage">
+      <img src="image/loading.png" alt="Loading Model" style="width: 100%; height: auto;" />
+      <div class="shine"></div>
+    </div>
+    <div class="loading-bar-container">
+      <div class="loading-bar" id="loadingBar">
+        <div class="loading-percentage" id="loadingPercentage">0%</div>
+      </div>
+    </div>
+  </section>
 
-  <div class="cursor">
-    <div class="cursor-dot"></div>
-    <div class="cursor-circle"></div>
-  </div>
-  
-  <!--========== To top button with scroll indicator bar ==========-->
-
-  <div class="to-top-btn">
-    <a href="#home">To Top</a>
-    <div class="scroll-indicator-bar"></div>
-  </div>
-  
-
-  <!--========== Header ==========-->
-
-  <header class="ra-header">
-    <div class="ra-container">
-      <div class="inner">
-        <div class="ra-logo">
-          <a href=""><span>RA.</span></a>
+  <!-- ===== ANIMATION SECTION ===== -->
+  <section id="animationSection" class="section-container">
+    <div class="banner">
+      <div class="slider" style="--quantity: 10">
+        <div class="item" style="--position: 1"><img src="image/img-1.jpg" alt=""></div>
+        <div class="item" style="--position: 2"><img src="image/img-2.jpg" alt=""></div>
+        <div class="item" style="--position: 3"><img src="image/img-3.jpg" alt=""></div>
+        <div class="item" style="--position: 4"><img src="image/img-4.avif" alt=""></div>
+        <div class="item" style="--position: 5"><img src="image/img-5.avif" alt=""></div>
+        <div class="item" style="--position: 6"><img src="image/img-6.jpg" alt=""></div>
+        <div class="item" style="--position: 7"><img src="image/img-7.jpg" alt=""></div>
+        <div class="item" style="--position: 8"><img src="image/img-8.avif" alt=""></div>
+        <div class="item" style="--position: 9"><img src="image/img-9.avif" alt=""></div>
+        <div class="item" style="--position: 10"><img src="image/img-10.jpg" alt=""></div>
+      </div>
+      <div class="content">
+        <h1 data-content="RA">RA</h1>
+        <div class="author" style="color: whitesmoke;">
+          <h2>Sneak Out</h2>
+          <p><b>Data Analyst <br> Full Stack</b></p>
+          <p>"Success is not final, failure is not fatal—it is the courage to continue that counts." 🚀</p>
         </div>
-        <div class="header-btn">
-          <div class="ra-main-btn border-btn lets-talk-btn">
-            <a href="#contact">Lets's Talk</a>
+        <div class="model"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PORTFOLIO SECTION ===== -->
+  <section id="portfolioSection" class="section-container">
+    <!--========== Customized cursor ==========-->
+    <div class="cursor">
+      <div class="cursor-dot"></div>
+      <div class="cursor-circle"></div>
+    </div>
+    
+    <!--========== To top button with scroll indicator bar ==========-->
+    <div class="to-top-btn">
+      <a href="#home">To Top</a>
+      <div class="scroll-indicator-bar"></div>
+    </div>
+    
+    <!--========== Header ==========-->
+    <header class="ra-header">
+      <div class="ra-container">
+        <div class="inner">
+          <div class="ra-logo">
+            <a href=""><span>RA.</span></a>
           </div>
-          <a href="#contact" class="lets-talk-icon"><i class="ri-chat-1-fill"></i></a>
-          <div class="theme-btn">
-            <i class="ri-sun-fill sun-icon"></i>
-            <i class="ri-moon-fill moon-icon"></i>
+          <div class="header-btn">
+            <div class="ra-main-btn border-btn lets-talk-btn">
+              <a href="#contact">Lets's Talk</a>
+            </div>
+            <a href="#contact" class="lets-talk-icon"><i class="ri-chat-1-fill"></i></a>
+            <div class="theme-btn">
+              <i class="ri-sun-fill sun-icon"></i>
+              <i class="ri-moon-fill moon-icon"></i>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!--========== Bottom navigation menu ==========-->
-
-  <div class="bottom-nav-container">
-    <div class="bottom-nav">
-      <div class="bottom-nav-inner">
-        <i class="ri-arrow-left-down-line menu-hide-btn"></i>
-        <ul class="menu">
-          <li class="menu-item"><a href="#home" class="current"><i class="ri-home-4-line"></i><span>Home</span></a></li>
-          <li class="menu-item"><a href="#about"><i class="ri-user-line"></i><span>About</span></a></li>
-          <li class="menu-item"><a href="#resume"><i class="ri-file-line"></i><span>Resume</span></a></li>
-          <li class="menu-item"><a href="#project"><i class="ri-briefcase-line"></i><span>Portfolio</span></a></li>
-          <li class="menu-item"><a href="#contact"><i class="ri-chat-1-line"></i><span>Contact</span></a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="menu-show-btn">
-      <div class="bar-01"></div>
-      <div class="bar-02"></div>
-    </div>
-  </div>
-
-  <!--========== Home ==========-->
-
-  <section class="ra-section nav-menu-section"  id="home">
-    <div class="ra-container home-container">
-      <div class="ra-wrapper">
-        <div class="home-social">
-          <span>Follow On</span>
-          <div class="social-line"></div>
-          <ul class="social-icon">
-            <li><a href="#"><i class="ri-facebook-fill"></i></a></li>
-            <li><a href="#"><i class="ri-twitter-x-fill"></i></a></li>
-            <li><a href="#"><i class="ri-linkedin-fill"></i></a></li>
+    <!--========== Bottom navigation menu ==========-->
+    <div class="bottom-nav-container">
+      <div class="bottom-nav">
+        <div class="bottom-nav-inner">
+          <i class="ri-arrow-left-down-line menu-hide-btn"></i>
+          <ul class="menu">
+            <li class="menu-item"><a href="#home" class="current"><i class="ri-home-4-line"></i><span>Home</span></a></li>
+            <li class="menu-item"><a href="#about"><i class="ri-user-line"></i><span>About</span></a></li>
+            <li class="menu-item"><a href="#resume"><i class="ri-file-line"></i><span>Resume</span></a></li>
+            <li class="menu-item"><a href="#project"><i class="ri-briefcase-line"></i><span>Portfolio</span></a></li>
+            <li class="menu-item"><a href="#contact"><i class="ri-chat-1-line"></i><span>Contact</span></a></li>
           </ul>
         </div>
-        <div class="avatar-container">
-          <div class="ra-main-btn hire-btn-01">
-            <a href="#">Hire Me <i class="ri-user-folow-line"></i></a>
-          </div>
-          <div class="avatar-img">
-            <img src="image/Pic.png" alt="">
-          </div>
-          <div class="avatar-info">
-            <div class="text-content">
-              <h4 class="hello-text">Hello, I'm</h4>
-              <h1 class="my-name" style="font-family: var(--head-font-family);">Ramesh Aravindh</h1>
-              <p class="what-i-do">A Data Analyst & Full Stack Developer</p>
-            </div>
-            <div class="ra-main-btn fill-btn hire-btn-02">
-              <a href="#">Hire Me<i class="ri-user-follow-line"></i></a>
-            </div>
-          </div>
-        </div>
-        <a href="#" class="home-scroll-btn">
-          <i class="ri-mouse-line mouse-icon"></i>
-          <div>Scroll Down</div>
-          <i class="ri-arrow-down-s-line arrow-icon"></i>
-        </a>
+      </div>
+      <div class="menu-show-btn">
+        <div class="bar-01"></div>
+        <div class="bar-02"></div>
       </div>
     </div>
-  </section> 
 
-  <!--========== About Me ==========-->
-
-  <section class="ra-section nav-menu-section" id="about">
-    <div class="ra-container ra-sub-container">
+    <!--========== Home ==========-->
+    <section class="ra-section nav-menu-section" id="home">
+      <div class="ra-container home-container">
         <div class="ra-wrapper">
-            <div class="section-title about-title">
-                <h3>About Me</h3>
-                <p>What I Do</p>
+          <div class="home-social">
+            <span>Follow On</span>
+            <div class="social-line"></div>
+            <ul class="social-icon">
+              <li><a href="#"><i class="ri-facebook-fill"></i></a></li>
+              <li><a href="#"><i class="ri-twitter-x-fill"></i></a></li>
+              <li><a href="#"><i class="ri-linkedin-fill"></i></a></li>
+            </ul>
+          </div>
+          <div class="avatar-container">
+            <div class="ra-main-btn hire-btn-01">
+              <a href="#">Hire Me <i class="ri-user-folow-line"></i></a>
             </div>
-            <div class="section-content">
-                <div class="about-img">
-                    <img src="image/Pic.png" alt="Profile Image">
-                </div>
-                <div class="about-detail">
-                    <h4 class="iam">I'm a Analyst & Developer</h4>
-                    <p class="about-desc">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod voluptates quas eaque veniam expedita sint temporibus...
-                    </p>
-
-                    <div class="pro-list">
-                        <div class="pro-card">
-                            <span>15+</span>
-                            <p>Projects Developed</p>
-                        </div>
-                        <div class="pro-card">
-                            <span>10+</span>
-                            <p>Tech Stack Mastery</p>
-                        </div>
-                        <div class="pro-card">
-                            <span>1,500+</span>
-                            <p>Development & Learning Hours</p>
-                        </div>
-                    </div>
-
-                    <div class="about-button">
-                        <div class="ra-main-btn fill-btn">
-                            <a href="#">Hire Me <i class="ri-user-follow-line"></i></a>
-                        </div>
-                        <div class="ra-main-btn border-btn">
-                            <a href="resume/Ramesh-Resume.pdf" download>Download</a>
-                        </div>
-                    </div>
-
-                </div>
+            <div class="avatar-img">
+              <img src="image/Pic.png" alt="">
             </div>
+            <div class="avatar-info">
+              <div class="text-content">
+                <h4 class="hello-text">Hello, I'm</h4>
+                <h1 class="my-name" style="font-family: var(--head-font-family);">Ramesh Aravindh</h1>
+                <p class="what-i-do">A Data Analyst & Full Stack Developer</p>
+              </div>
+              <div class="ra-main-btn fill-btn hire-btn-02">
+                <a href="#">Hire Me<i class="ri-user-follow-line"></i></a>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="home-scroll-btn">
+            <i class="ri-mouse-line mouse-icon"></i>
+            <div>Scroll Down</div>
+            <i class="ri-arrow-down-s-line arrow-icon"></i>
+          </a>
         </div>
-    </div>
-  </section>
+      </div>
+    </section> 
 
-
-  <!-- ========== My Resume ========== -->
-  <section class="ra-section nav-menu-section" id="resume">
-    <div class="ra-container ra-sub-container">
-      <div class="ra-wrapper">
-        <div class="section-title">
-          <h3>My Resume</h3>
-          <p>Combination of Skill's & Experience</p>
-        </div>
-        <div class="resume-tabs">
-          <a class="tab-btn active"><i class="ri-graduation-cap-line"></i>Education</a>
-          <a class="tab-btn"><i class="ri-user-settings-line"></i>Personal Skills</a>
-        </div>
-        <div class="section-content">
-          <div class="resume-tab-content education active">
-            <div class="resume-line"></div>
-            <div class="resume-items">
-              <div class="items item-left">
-                <div class="info">
-                  <i class="ri-graduation-cap-fill"></i>
-                  <div>
-                    <h5>B.E Computer Science And Engineering</h5>
-                    <p>Rvs College of Engineering and Technology</p>
-                    <span>2019-2023</span>
-                  </div>
+    <!--========== About Me ==========-->
+    <section class="ra-section nav-menu-section" id="about">
+      <div class="ra-container ra-sub-container">
+        <div class="ra-wrapper">
+          <div class="section-title about-title">
+            <h3>About Me</h3>
+            <p>What I Do</p>
+          </div>
+          <div class="section-content">
+            <div class="about-img">
+              <img src="image/Pic.png" alt="Profile Image">
+            </div>
+            <div class="about-detail">
+              <h4 class="iam">I'm a Analyst & Developer</h4>
+              <p class="about-desc">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod voluptates quas eaque veniam expedita sint temporibus...
+              </p>
+              <div class="pro-list">
+                <div class="pro-card">
+                  <span>15+</span>
+                  <p>Projects Developed</p>
+                </div>
+                <div class="pro-card">
+                  <span>10+</span>
+                  <p>Tech Stack Mastery</p>
+                </div>
+                <div class="pro-card">
+                  <span>1,500+</span>
+                  <p>Development & Learning Hours</p>
                 </div>
               </div>
-              <div class="items item-right">
-                <div class="info">
-                  <i class="ri-graduation-cap-fill"></i>
-                  <div>
-                    <h5>Data Analyst</h5>
-                    <p>Skill Lync</p>
-                    <span>2023-2024</span>
-                  </div>
+              <div class="about-button">
+                <div class="ra-main-btn fill-btn">
+                  <a href="#">Hire Me <i class="ri-user-follow-line"></i></a>
                 </div>
-              </div>
-              <div class="items item-left">
-                <div class="info">
-                  <i class="ri-graduation-cap-fill"></i>
-                  <div>
-                    <h5>Python-Full Stack</h5>
-                    <p>Nobel Software</p>
-                    <span>2024-present</span>
-                  </div>
+                <div class="ra-main-btn border-btn">
+                  <a href="resume/Ramesh-Resume.pdf" download>Download</a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="resume-tab-content personal-skills">
-            <div class="skill-container">
-              <div class="skill-card">
-                <div class="skill-title">
-                  <i class="ri-macbook-fill"></i>
-                  <span>Front-End Developer</span>
-                </div>
-                <div class="skill-categories">
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>HTML</h5>
-                      <span>Advanced</span>
-                    </div>
-                  </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>CSS</h5>
-                      <span>Advanced</span>
-                    </div>
-                  </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>Javascript</h5>
-                      <span>Advanced</span>
-                    </div>
-                  </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>React</h5>
-                      <span>Advanced</span>
-                    </div>
-                  </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>Bootstrap</h5>
-                      <span>Advanced</span>
-                    </div>
-                  </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>JQuery</h5>
-                      <span>Advanced</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="skill-card">
-                <div class="skill-title">
-                  <i class="ri-macbook-fill"></i>
-                  <span>Back-End Developer</span>
-                </div>
-                <div class="skill-categories">
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>Python</h5>
-                      <span>Advanced</span>
-                    </div>
-                  </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>MySQL</h5>
-                      <span>Advanced</span>
-                    </div>
-                  </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>Linux</h5>
-                    </div>
-                  </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>Node Js</h5>
-                      <span>Advanced</span>
-                    </div>
-                  </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>Git</h5>
-                    </div>
-                  </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>Postman</h5>
-                    </div>
-                  </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>Aws</h5>
-                    </div>
-                  </div>
-                </div>
-                </div>
-              </div>
+        </div>
+      </div>
+    </section>
 
-              <div class="skill-card">
-                <div class="skill-title">
-                  <i class="ri-macbook-fill"></i>
-                  <span>Visualization</span>
+    <!-- ========== My Resume ========== -->
+    <section class="ra-section nav-menu-section" id="resume">
+      <div class="ra-container ra-sub-container">
+        <div class="ra-wrapper">
+          <div class="section-title">
+            <h3>My Resume</h3>
+            <p>Combination of Skill's & Experience</p>
+          </div>
+          <div class="resume-tabs">
+            <a class="tab-btn active"><i class="ri-graduation-cap-line"></i>Education</a>
+            <a class="tab-btn"><i class="ri-user-settings-line"></i>Personal Skills</a>
+          </div>
+          <div class="section-content">
+            <div class="resume-tab-content education active">
+              <div class="resume-line"></div>
+              <div class="resume-items">
+                <div class="items item-left">
+                  <div class="info">
+                    <i class="ri-graduation-cap-fill"></i>
+                    <div>
+                      <h5>B.E Computer Science And Engineering</h5>
+                      <p>Rvs College of Engineering and Technology</p>
+                      <span>2019-2023</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="skill-categories">
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>Excel</h5>
-                      <span>Advanced</span>
+                <div class="items item-right">
+                  <div class="info">
+                    <i class="ri-graduation-cap-fill"></i>
+                    <div>
+                      <h5>Data Analyst</h5>
+                      <p>Skill Lync</p>
+                      <span>2023-2024</span>
                     </div>
                   </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>Tableau</h5>
-                      <span>Advanced</span>
+                </div>
+                <div class="items item-left">
+                  <div class="info">
+                    <i class="ri-graduation-cap-fill"></i>
+                    <div>
+                      <h5>Python-Full Stack</h5>
+                      <p>Nobel Software</p>
+                      <span>2024-present</span>
                     </div>
                   </div>
-                  <div class="skill">
-                    <i class="ri-checkbox-circle-fill"></i>
-                    <div class="skill-info">
-                      <h5>Power Bi</h5>
-                      <span>Advanced</span>
+                </div>
+              </div>
+            </div>
+            <div class="resume-tab-content personal-skills">
+              <div class="skill-container">
+                <div class="skill-card">
+                  <div class="skill-title">
+                    <i class="ri-macbook-fill"></i>
+                    <span>Front-End Developer</span>
+                  </div>
+                  <div class="skill-categories">
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>HTML</h5>
+                        <span>Advanced</span>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>CSS</h5>
+                        <span>Advanced</span>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>Javascript</h5>
+                        <span>Advanced</span>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>React</h5>
+                        <span>Advanced</span>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>Bootstrap</h5>
+                        <span>Advanced</span>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>JQuery</h5>
+                        <span>Advanced</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="skill-card">
+                  <div class="skill-title">
+                    <i class="ri-macbook-fill"></i>
+                    <span>Back-End Developer</span>
+                  </div>
+                  <div class="skill-categories">
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>Python</h5>
+                        <span>Advanced</span>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>MySQL</h5>
+                        <span>Advanced</span>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>Linux</h5>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>Node Js</h5>
+                        <span>Advanced</span>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>Git</h5>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>Postman</h5>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>Aws</h5>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                <div class="skill-card">
+                  <div class="skill-title">
+                    <i class="ri-macbook-fill"></i>
+                    <span>Visualization</span>
+                  </div>
+                  <div class="skill-categories">
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>Excel</h5>
+                        <span>Advanced</span>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>Tableau</h5>
+                        <span>Advanced</span>
+                      </div>
+                    </div>
+                    <div class="skill">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      <div class="skill-info">
+                        <h5>Power Bi</h5>
+                        <span>Advanced</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -359,239 +395,214 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!--========== Project ==========-->
+    <section class="ra-section nav-menu-section" id="project">
+      <div class="ra-container ra-sub-container">
+        <div class="ra-wrapper">
+          <div class="section-title">
+            <h3>Projects</h3>
+            <p>My Works</p>
+          </div>
+          <div class="section-content">
+            <div class="project-container">
+              <!-- Project Card 1 -->
+              <div class="project-card">
+                <a href="https://github.com/rameshsurya10/Alumni-Career-Analysis">
+                  <div class="card-img">
+                    <img src="image/project/project-1.jpg" alt="">
+                  </div>
+                  <div class="card-info">
+                    <span>Alumni Career Analysis</span>
+                    <h4>Insight-Driven Alumni Career Trends & Pathways</h4>
+                    <i class="ri-arrow-right-up-line card-btn"></i>
+                  </div>
+                </a>
+              </div>
 
-  <!--========== Project ==========-->
-  <section class="ra-section nav-menu-section" id="project">
-    <div class="ra-container ra-sub-container">
-      <div class="ra-wrapper">
-        <div class="section-title">
-          <h3>Projects</h3>
-          <p>My Works</p>
-        </div>
-        <div class="section-content">
-          <div class="project-container">
-            <!-- Project Card 1 -->
-            <div class="project-card">
-              <a href="https://github.com/rameshsurya10/Alumni-Career-Analysis">
-                <div class="card-img">
-                  <img src="image/project/project-1.jpg" alt="">
-                </div>
-                <div class="card-info">
-                  <span>Alumni Career Analysis</span>
-                  <h4>Insight-Driven Alumni Career Trends & Pathways</h4>
-                  <i class="ri-arrow-right-up-line card-btn"></i>
-                </div>
-              </a>
-            </div>
+              <!-- Project Card 2 -->
+              <div class="project-card">
+                <a href="https://github.com/rameshsurya10/Website">
+                  <div class="card-img">
+                    <img src="image/project/project-2.jpg" alt="">
+                  </div>
+                  <div class="card-info">
+                    <span>Responsive Trading Course Website</span>
+                    <h4>A Full-Stack Platform for Modern Trading Education</h4>
+                    <i class="ri-arrow-right-up-line card-btn"></i>
+                  </div>
+                </a>
+              </div>
 
-            <!-- Project Card 2 -->
-            <div class="project-card">
-              <a href="https://github.com/rameshsurya10/Website">
-                <div class="card-img">
-                  <img src="image/project/project-2.jpg" alt="">
-                </div>
-                <div class="card-info">
-                  <span>Responsive Trading Course Website</span>
-                  <h4>A Full-Stack Platform for Modern Trading Education</h4>
-                  <i class="ri-arrow-right-up-line card-btn"></i>
-                </div>
-              </a>
-            </div>
+              <!-- Project Card 3 -->
+              <div class="project-card">
+                <a href="https://github.com/rameshsurya10/Trade-website">
+                  <div class="card-img">
+                    <img src="image/project/project-3.jpg" alt="">
+                  </div>
+                  <div class="card-info">
+                    <span>TradeMastery Webpage</span>
+                    <h4>Responsive Platform for Learning and Mastering Binary Trading</h4>
+                    <i class="ri-arrow-right-up-line card-btn"></i>
+                  </div>
+                </a>
+              </div>
 
-            <!-- Project Card 3 -->
-            <div class="project-card">
-              <a href="https://github.com/rameshsurya10/Trade-website">
-                <div class="card-img">
-                  <img src="image/project/project-3.jpg" alt="">
-                </div>
-                <div class="card-info">
-                  <span>TradeMastery Webpage</span>
-                  <h4>Responsive Platform for Learning and Mastering Binary Trading</h4>
-                  <i class="ri-arrow-right-up-line card-btn"></i>
-                </div>
-              </a>
-            </div>
+              <!-- Project Card 4 -->
+              <div class="project-card">
+                <a href="https://github.com/rameshsurya10/Uber-Supply-Demand-Gap-EDA">
+                  <div class="card-img">
+                    <img src="image/project/project-4.jpg" alt="">
+                  </div>
+                  <div class="card-info">
+                    <span>Uber Supply-Demand Gap Analysis</span>
+                    <h4>Optimizing Ride Availability with Data-Driven Solutions</h4>
+                    <i class="ri-arrow-right-up-line card-btn"></i>
+                  </div>
+                </a>
+              </div>
 
-            <!-- Project Card 4 -->
-            <div class="project-card">
-              <a href="https://github.com/rameshsurya10/Uber-Supply-Demand-Gap-EDA">
-                <div class="card-img">
-                  <img src="image/project/project-4.jpg" alt="">
-                </div>
-                <div class="card-info">
-                  <span>Uber Supply-Demand Gap Analysis</span>
-                  <h4>Optimizing Ride Availability with Data-Driven Solutions</h4>
-                  <i class="ri-arrow-right-up-line card-btn"></i>
-                </div>
-              </a>
-            </div>
-
-            <!-- Project Card 5 -->
-            <div class="project-card">
-              <a href="https://github.com/rameshsurya10/EDA-on-Vehicle-insurance-">
-                <div class="card-img">
-                  <img src="image/project/project-5.jpg" alt="">
-                </div>
-                <div class="card-info">
-                  <span>EDA on Vehicle Insurance Data</span>
-                  <h4>Unveiling Key Insurance Trends Through Data Exploration</h4>
-                  <i class="ri-arrow-right-up-line card-btn"></i>
-                </div>
-              </a>
+              <!-- Project Card 5 -->
+              <div class="project-card">
+                <a href="https://github.com/rameshsurya10/EDA-on-Vehicle-insurance-">
+                  <div class="card-img">
+                    <img src="image/project/project-5.jpg" alt="">
+                  </div>
+                  <div class="card-info">
+                    <span>EDA on Vehicle Insurance Data</span>
+                    <h4>Unveiling Key Insurance Trends Through Data Exploration</h4>
+                    <i class="ri-arrow-right-up-line card-btn"></i>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-</section>
+    </section>
 
-  
-  
-  <!--========== Contact Me ==========-->
-  <section class="ra-section nav-menu-section" id="Contact">
-    <div class="ra-container ra-sub-container">
-       <div class="ta-wrapper">
-          <h3 style="font-family: var(--head-font-family); color: var(--color-01);">Contact Me</h3>
-          <p>Get In Touch</p>
-       </div>
-       <div class="section-content">
-          <div class="contact-container">
-             <!-- Contact Info Section -->
-            <div class="contact-info">
-              <h3>Contact Info</h3>
-              <ul class="contact-details">
-                <li class="contact-item">
-                   <div class="contact-icon">
-                      <i class="ri-mail-send-fill"></i>
+    <!--========== Contact Me ==========-->
+    <section class="ra-section nav-menu-section" id="contact">
+      <div class="ra-container ra-sub-container">
+         <div class="ta-wrapper">
+            <h3 style="font-family: var(--head-font-family); color: var(--color-01);">Contact Me</h3>
+            <p>Get In Touch</p>
+         </div>
+         <div class="section-content">
+            <div class="contact-container">
+               <!-- Contact Info Section -->
+              <div class="contact-info">
+                <h3>Contact Info</h3>
+                <ul class="contact-details">
+                  <li class="contact-item">
+                     <div class="contact-icon">
+                        <i class="ri-mail-send-fill"></i>
+                     </div>
+                     <div class="contact-method">
+                        <span>E-Mail</span>
+                        <h4>ramesharavindht@gmail.com</h4>
+                        <a href="mailto:ramesharavindht@gmail.com" target="_blank"><span>Send <i class="ri-arrow-right-line"></i></span></a>
+                     </div>
+                  </li>
+                  <li class="contact-item">
+                     <div class="contact-icon">
+                        <i class="ri-whatsapp-line"></i>
+                     </div>
+                     <div class="contact-method">
+                        <span>What's App</span>
+                        <h4>+91 86xxx xx008</h4>
+                        <a href="https://wa.me/+918667258008?text=Hello%20there!%20How%20can%20I%20help%20you" target="_blank"><span>Send <i class="ri-arrow-right-line"></i></span></a>
+                     </div>
+                  </li>
+                  <li class="contact-item">
+                     <div class="contact-icon">
+                        <i class="ri-linkedin-line"></i>
+                     </div>
+                     <div class="contact-method">
+                        <span>Linked In</span>
+                        <h4>Ramesh Aravindh</h4>
+                        <a href="https://www.linkedin.com/in/ramesharavindh08/" target="_blank"><span>Send <i class="ri-arrow-right-line"></i></span></a>
+                     </div>
+                  </li>
+               </ul>
+                
+                 <h3>Social Info</h3>
+                 <ul class="contact-social-links">
+                    <li><a href="https://www.instagram.com/king_of_heart_robber/"><i class="ri-instagram-fill"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/ramesharavindh08/"><i class="ri-linkedin-fill"></i></a></li>
+                    <li><a href="https://github.com/rameshsurya10"><i class="ri-github-fill"></i></a></li>
+                 </ul>
+               </div>
+              
+                <!-- Contact Form Section -->
+               <section class="ra-section nav-menu-section" id="contact">
+                 <div class="ra-container">
+                   <div class="contact-form-body">
+                     <h2>Let's Work <span>Together...</span></h2>
+                     <p>Please fill out the form to contact me. Feel free to reach out via phone between 9:00 a.m. and 6:00 p.m.</p>
+               
+                     <form id="ra-contact-form" action="https://api.web3forms.com/submit" method="POST" data-netlify="true">
+                       <!-- REQUIRED FIELDS -->
+                       <input type="hidden" name="access_key" value="6ffbdb44-8976-433e-910c-ca2b7f5f5c19" />
+                       <input type="hidden" name="from_name" value="My Portfolio Website" />
+                       <input type="hidden" name="subject" value="New Contact Form Submission" />
+                       <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+                       <input type="hidden" name="replyto" value="{{email}}" />
+                       <input type="hidden" name="subject" value="New Submission from Web3Forms">
+                       <input type="hidden" name="auto_response" value="Thank you for contacting me. I will get back to you soon!" />
+               
+                       <!-- HONEYPOT (SPAM PROTECTION) -->
+                       <input type="checkbox" name="botcheck" style="display: none;" />
+               
+                       <!-- FIELDS -->
+                       <div class="input-group">
+                         <input type="text" name="name" placeholder="Name *" required />
+                       </div>
+                       <div class="input-group">
+                         <input type="email" name="email" placeholder="Email *" required />
+                       </div>
+                       <div class="input-group">
+                         <input type="text" name="subject" placeholder="Your Subject *" required />
+                       </div>
+                       <div class="input-group">
+                         <textarea name="message" placeholder="Your Message *" required></textarea>
+                       </div>
+               
+                       <!-- CAPTCHA -->
+                       <div class="h-captcha" data-captcha="true"></div>
+
+                       
+               
+                       <!-- SUBMIT -->
+                       
+                       <div class="input-group send-message">
+                           <h4>Double Click To Submit</h4>
+                           <button class="ra-main-btn fill-btn submit-btn" ondblclick="myFunction()" type="submit">Send Message</button>
+                       </div>
+                     </form>
                    </div>
-                   <div class="contact-method">
-                      <span>E-Mail</span>
-                      <h4>ramesharavindht@gmail.com</h4>
-                      <a href="mailto:ramesharavindht@gmail.com" target="_blank"><span>Send <i class="ri-arrow-right-line"></i></span></a>
-                   </div>
-                </li>
-                <li class="contact-item">
-                   <div class="contact-icon">
-                      <i class="ri-whatsapp-line"></i>
-                   </div>
-                   <div class="contact-method">
-                      <span>What's App</span>
-                      <h4>+91 86xxx xx008</h4>
-                      <a href="https://wa.me/+918667258008?text=Hello%20there!%20How%20can%20I%20help%20you" target="_blank"><span>Send <i class="ri-arrow-right-line"></i></span></a>
-                   </div>
-                </li>
-                <li class="contact-item">
-                   <div class="contact-icon">
-                      <i class="ri-linkedin-line"></i>
-                   </div>
-                   <div class="contact-method">
-                      <span>Linked In</span>
-                      <h4>Ramesh Aravindh</h4>
-                      <a href="https://www.linkedin.com/in/ramesharavindh08/" target="_blank"><span>Send <i class="ri-arrow-right-line"></i></span></a>
-                   </div>
-                </li>
-             </ul>
+                 </div>
+               </section>
+               
              
-              <h3>Social Info</h3>
-              <ul class="contact-social-links">
-                 <li><a href="https://www.instagram.com/king_of_heart_robber/"><i class="ri-instagram-fill"></i></a></li>
-                 <li><a href="https://www.linkedin.com/in/ramesharavindh08/"><i class="ri-linkedin-fill"></i></a></li>
-                 <li><a href="https://github.com/rameshsurya10"><i class="ri-github-fill"></i></a></li>
-              </ul>
-            </div>
-           
-             <!-- Contact Form Section -->
-            <section class="ra-section nav-menu-section" id="contact">
-              <div class="ra-container">
-                <div class="contact-form-body">
-                  <h2>Let's Work <span>Together...</span></h2>
-                  <p>Please fill out the form to contact me. Feel free to reach out via phone between 9:00 a.m. and 6:00 p.m.</p>
-            
-                  <form id="ra-contact-form" action="https://api.web3forms.com/submit" method="POST" data-netlify="true">
-                    <!-- REQUIRED FIELDS -->
-                    <input type="hidden" name="access_key" value="6ffbdb44-8976-433e-910c-ca2b7f5f5c19" />
-                    <input type="hidden" name="from_name" value="My Portfolio Website" />
-                    <input type="hidden" name="subject" value="New Contact Form Submission" />
-                    <input type="hidden" name="redirect" value="https://web3forms.com/success" />
-                    <input type="hidden" name="replyto" value="{{email}}" />
-                    <input type="hidden" name="subject" value="New Submission from Web3Forms">
-                    <input type="hidden" name="auto_response" value="Thank you for contacting me. I will get back to you soon!" />
-            
-                    <!-- HONEYPOT (SPAM PROTECTION) -->
-                    <input type="checkbox" name="botcheck" style="display: none;" />
-            
-                    <!-- FIELDS -->
-                    <div class="input-group">
-                      <input type="text" name="name" placeholder="Name *" required />
-                    </div>
-                    <div class="input-group">
-                      <input type="email" name="email" placeholder="Email *" required />
-                    </div>
-                    <div class="input-group">
-                      <input type="text" name="subject" placeholder="Your Subject *" required />
-                    </div>
-                    <div class="input-group">
-                      <textarea name="message" placeholder="Your Message *" required></textarea>
-                    </div>
-            
-                    <!-- CAPTCHA -->
-                    <div class="h-captcha" data-captcha="true"></div>
-
-                    
-            
-                    <!-- SUBMIT -->
-                    
-                    <div class="input-group send-message">
-                        <h4>Double Click To Submit</h4>
-                        <button class="ra-main-btn fill-btn submit-btn" ondblclick="myFunction()" type="submit">Send Message</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </section>
-            
-          
+             </div>
           </div>
-       </div>
-    </div>
- </section>
- 
-  
-  <!--========== Footer ==========-->
-  <footer class="ra-footer">
-    <div class="ra-container">
-      <div class="inner">
-        <div class="ra-logo">
-          <a href="#home"><span>RA</span></a>
-        </div>
-        <ul class="footer-menu">
-          <li class="menu-item"><a href="#home">Home</a></li>
-          <li class="menu-item"><a href="#about">About</a></li>
-          <li class="menu-item"><a href="#resume">Resume</a></li>
-          <li class="menu-item"><a href="#project">Project</a></li>
-        </ul>
-        <p class="copy-right">© All rights reserved by <a href="#">Ramesh Aravindh</a></p>
       </div>
-    </div>
-  </footer>
-  
+   </section>
+  </section>
 
   <!--========== Swiper JS ==========-->
-
   <script src="jav/swiper-bundle.min.js"></script>
 
   <!--========== EmailJS ==========-->
-
   <script src="https://web3forms.com/client/script.js" async defer></script>
 
-
   <!--========== Main javascript ==========-->
-
   <script src="jav/index.js"></script>
-
+  
+  <!--========== Transitions javascript ==========-->
+  <script src="jav/trans.js"></script>
 </body>
 </html>
       
