@@ -186,4 +186,143 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  // Show loading section
+  loadingSection.style.display = 'flex';
+  loadingImage.style.display = 'block';
+
+  let loadingComplete = false;
+
+  // Function to update loading bar
+  function updateLoadingBar() {
+    if (progress < 100 && !loadingComplete) {
+      progress += 1;
+      loadingBar.style.width = `${progress}%`;
+      loadingPercentage.textContent = `${progress}%`;
+
+      if (progress === 100) {
+        loadingComplete = true;
+        setTimeout(completeLoading, 500);
+      } else {
+        // Calculate delay based on progress
+        let delay = progress < 90 ? 30 : 50; // Slow down near the end
+        setTimeout(updateLoadingBar, delay);
+      }
+    }
+  }
+
+  // Function to handle completion
+  function completeLoading() {
+    // Fade out loading section
+    loadingSection.style.opacity = '0';
+    loadingSection.style.transition = 'opacity 1s ease-in-out';
+
+    // Show animation section after fade out
+    setTimeout(() => {
+      loadingSection.style.display = 'none';
+      animationSection.style.display = 'flex';
+      animationSection.style.opacity = '0';
+      
+      // Fade in animation section
+      setTimeout(() => {
+        animationSection.style.opacity = '1';
+        animationSection.style.transition = 'opacity 1s ease-in-out';
+      }, 100);
+    }, 1000);
+  }
+
+  // Add error handling for the loading image
+  const img = loadingImage.querySelector('img');
+  img.onload = function() {
+    console.log('Loading image loaded successfully');
+    // Start loading animation after image loads
+    setTimeout(updateLoadingBar, 100);
+  };
+
+  img.onerror = function() {
+    console.error('Error loading image:', img.src);
+    // Start loading animation even if image fails to load
+    setTimeout(updateLoadingBar, 100);
+  };
+
+  // Get all necessary elements
+  const loadingSection = document.getElementById('loadingSection');
+  const animationSection = document.getElementById('animationSection');
+  const portfolioSection = document.getElementById('portfolioSection');
+  const loadingBar = document.getElementById('loadingBar');
+  const loadingPercentage = document.getElementById('loadingPercentage');
+
+  let progress = 0;
+  let isLoading = true;
+
+  // Loading animation
+  function updateLoader() {
+    if (progress < 100) {
+      progress++;
+      loadingBar.style.width = progress + '%';
+      loadingPercentage.textContent = progress + '%';
+      
+      if (progress < 100) {
+        setTimeout(updateLoader, 30);
+      } else {
+        showAnimationSection();
+      }
+    }
+  }
+
+  // Show animation section after loading
+  function showAnimationSection() {
+    loadingSection.style.opacity = '0';
+    loadingSection.style.transition = 'opacity 1s';
+    
+    setTimeout(() => {
+      loadingSection.style.display = 'none';
+      animationSection.style.display = 'block';
+      
+      setTimeout(() => {
+        animationSection.style.opacity = '1';
+        setupScrollTransition();
+      }, 100);
+    }, 1000);
+  }
+
+  function setupScrollTransition() {
+    let isTransitioning = false;
+
+    window.addEventListener('scroll', function() {
+      if (isTransitioning) return;
+
+      const scrollPosition = window.pageYOffset;
+      if (scrollPosition > window.innerHeight / 3) {
+        isTransitioning = true;
+        showPortfolioSection();
+      }
+    });
+  }
+
+  function showPortfolioSection() {
+    animationSection.style.opacity = '0';
+    
+    setTimeout(() => {
+      animationSection.style.display = 'none';
+      portfolioSection.style.display = 'block';
+      
+      setTimeout(() => {
+        portfolioSection.style.opacity = '1';
+        portfolioSection.style.transition = 'opacity 1s';
+      }, 100);
+    }, 500);
+  }
+
+  // Start the loader
+  setTimeout(updateLoader, 100);
+
+  // Initial styles for sections
+  portfolioSection.style.display = 'none';
+  portfolioSection.style.position = 'fixed';
+  portfolioSection.style.top = '0';
+  portfolioSection.style.left = '0';
+  portfolioSection.style.width = '100%';
+  portfolioSection.style.height = '100%';
+  portfolioSection.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
 });

@@ -5,69 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ramesh-Personal Portfolio</title>
   
-  <!--========== Swiper CSS ==========-->
+  <!--========== CSS Files ==========-->
   <link rel="stylesheet" href="css/swiper-bundle.min.css">
-
-  <!--========== Main style sheet ==========-->
   <link rel="stylesheet" href="css/index.css">
-
-  <!--========== Transitions CSS ==========-->
   <link rel="stylesheet" href="css/transitions.css">
-
-  <!--========== Remixicon ==========-->
+  <link rel="stylesheet" href="animation/ani.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
   
-  <!--========== THREE.js for loading page ==========-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    /* Loading Styles */
+    #loadingSection {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #D2D2D2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
 
-  <!--========== Animation CSS ==========-->
-  <link rel="stylesheet" href="animation/ani.css">
+    .loading-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+    }
+
+    .loading-bar-container {
+      position: absolute;
+      bottom: 20%;
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .loading-bar {
+      width: 0%;
+      height: 100%;
+      background: #fff;
+      transition: width 0.3s;
+    }
+
+    .loading-percentage {
+      position: absolute;
+      top: -25px;
+      right: 0;
+      color: #fff;
+    }
+
+    /* Animation Section Styles */
+    *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+      }
+      body{
+          background-color: #D2D2D2;
+          background-image:
+          repeating-linear-gradient(
+              to right, transparent 0 100px,
+              #25283b22 100px 101px
+          ),
+          repeating-linear-gradient(
+              to bottom, transparent 0 100px,
+              #25283b22 100px 101px
+          );
+      }
+      
+      body::before{
+          position: absolute;
+          width: 1000%;
+          height: 100%;
+          transform: translateX(-50%);
+          content: '';
+          background-image: url(./image/bg-2.png);
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-position: top center;
+          pointer-events: none;
+      }
+  </style>
 </head>
 <body>
-
-  <!-- ===== LOADING SECTION ===== -->
-  <section id="loadingSection" class="section-container">
-    <canvas id="canvas"></canvas>
-    <div class="loading-image" id="loadingImage">
-      <img src="image/loading.png" alt="Loading Model" style="width: 100%; height: auto;" />
-      <div class="shine"></div>
+  <!-- Loading Section -->
+  <section id="loadingSection">
+    <div class="loading-image">
+      <img src="./image/loading.png" alt="Loading">
     </div>
     <div class="loading-bar-container">
-      <div class="loading-bar" id="loadingBar">
+      <div class="loading-bar" id="loadingBar"></div>
         <div class="loading-percentage" id="loadingPercentage">0%</div>
-      </div>
     </div>
   </section>
 
-  <!-- ===== ANIMATION SECTION ===== -->
-  <section id="animationSection" class="section-container">
-    <div class="banner">
-      <div class="slider" style="--quantity: 10">
-        <div class="item" style="--position: 1"><img src="image/img-1.jpg" alt=""></div>
-        <div class="item" style="--position: 2"><img src="image/img-2.jpg" alt=""></div>
-        <div class="item" style="--position: 3"><img src="image/img-3.jpg" alt=""></div>
-        <div class="item" style="--position: 4"><img src="image/img-4.avif" alt=""></div>
-        <div class="item" style="--position: 5"><img src="image/img-5.avif" alt=""></div>
-        <div class="item" style="--position: 6"><img src="image/img-6.jpg" alt=""></div>
-        <div class="item" style="--position: 7"><img src="image/img-7.jpg" alt=""></div>
-        <div class="item" style="--position: 8"><img src="image/img-8.avif" alt=""></div>
-        <div class="item" style="--position: 9"><img src="image/img-9.avif" alt=""></div>
-        <div class="item" style="--position: 10"><img src="image/img-10.jpg" alt=""></div>
-      </div>
-      <div class="content">
-        <h1 data-content="RA">RA</h1>
-        <div class="author" style="color: whitesmoke;">
-          <h2>Sneak Out</h2>
-          <p><b>Data Analyst <br> Full Stack</b></p>
-          <p>"Success is not final, failure is not fatal—it is the courage to continue that counts." 🚀</p>
-        </div>
-        <div class="model"></div>
-      </div>
+  <!-- Animation Section -->
+  <div class="banner">
+    <div class="slider" style="--quantity: 10">
+        <div class="item" style="--position: 1"><img src="./image/img-1.jpg" alt=""></div>
+        <div class="item" style="--position: 2"><img src="./image/img-2.jpg" alt=""></div>
+        <div class="item" style="--position: 3"><img src="./image/img-3.jpg" alt=""></div>
+        <div class="item" style="--position: 4"><img src="./image/img-4.avif" alt=""></div>
+        <div class="item" style="--position: 5"><img src="./image/img-5.avif" alt=""></div>
+        <div class="item" style="--position: 6"><img src="./image/img-6.jpg" alt=""></div>
+        <div class="item" style="--position: 7"><img src="./image/img-7.jpg" alt=""></div>
+        <div class="item" style="--position: 8"><img src="./image/img-8.avif" alt=""></div>
+        <div class="item" style="--position: 9"><img src="./image/img-9.avif" alt=""></div>
+        <div class="item" style="--position: 10"><img src="./image/img-10.jpg" alt=""></div>
     </div>
-  </section>
+    <div class="content">
+            <h1 data-content="RA">RA</h1>
+            <div class="author" style="color: whitesmoke;">
+                <h2>Sneak Out</h2>
+                <p><b>Data Analyst <br> Full Stack</b></p>
+                <p>"Success is not final, failure is not fatal—it is the courage to continue that counts." 🚀</p>
+            </div>
+          <div class="model"></div>
+    </div>
+  </div>
 
   <!-- ===== PORTFOLIO SECTION ===== -->
-  <section id="portfolioSection" class="section-container">
+  <section id="portfolioSection" class="section-container" style="display: none;">
     <!--========== Customized cursor ==========-->
     <div class="cursor">
       <div class="cursor-dot"></div>
@@ -81,22 +143,14 @@
     </div>
     
     <!--========== Header ==========-->
-    <header class="ra-header">
-      <div class="ra-container">
-        <div class="inner">
-          <div class="ra-logo">
-            <a href=""><span>RA.</span></a>
-          </div>
-          <div class="header-btn">
-            <div class="ra-main-btn border-btn lets-talk-btn">
-              <a href="#contact">Lets's Talk</a>
-            </div>
-            <a href="#contact" class="lets-talk-icon"><i class="ri-chat-1-fill"></i></a>
-            <div class="theme-btn">
-              <i class="ri-sun-fill sun-icon"></i>
-              <i class="ri-moon-fill moon-icon"></i>
-            </div>
-          </div>
+    <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-3">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">RA.</a>
+        <div class="d-flex align-items-center">
+          <a href="#contact" class="btn btn-outline-primary me-2">Let's Talk</a>
+          <button class="btn btn-light" id="themeToggle">
+            <i class="ri-sun-fill"></i>
+          </button>
         </div>
       </div>
     </header>
@@ -122,41 +176,26 @@
     </div>
 
     <!--========== Home ==========-->
-    <section class="ra-section nav-menu-section" id="home">
-      <div class="ra-container home-container">
-        <div class="ra-wrapper">
-          <div class="home-social">
-            <span>Follow On</span>
-            <div class="social-line"></div>
-            <ul class="social-icon">
-              <li><a href="#"><i class="ri-facebook-fill"></i></a></li>
-              <li><a href="#"><i class="ri-twitter-x-fill"></i></a></li>
-              <li><a href="#"><i class="ri-linkedin-fill"></i></a></li>
-            </ul>
+    <section id="home" class="min-vh-100 d-flex align-items-center">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="social-links mb-4">
+              <span class="text-muted">Follow On</span>
+              <div class="d-flex gap-3 mt-2">
+                <a href="#" class="social-icon"><i class="ri-facebook-fill"></i></a>
+                <a href="#" class="social-icon"><i class="ri-twitter-fill"></i></a>
+                <a href="#" class="social-icon"><i class="ri-linkedin-fill"></i></a>
           </div>
-          <div class="avatar-container">
-            <div class="ra-main-btn hire-btn-01">
-              <a href="#">Hire Me <i class="ri-user-folow-line"></i></a>
             </div>
-            <div class="avatar-img">
-              <img src="image/Pic.png" alt="">
+            <h4>Hello, I'm</h4>
+            <h1 class="display-4 fw-bold mb-3">Ramesh Aravindh</h1>
+            <p class="lead mb-4">A Data Analyst & Full Stack Developer</p>
+            <a href="#" class="btn btn-primary">Hire Me <i class="ri-user-follow-line ms-2"></i></a>
             </div>
-            <div class="avatar-info">
-              <div class="text-content">
-                <h4 class="hello-text">Hello, I'm</h4>
-                <h1 class="my-name" style="font-family: var(--head-font-family);">Ramesh Aravindh</h1>
-                <p class="what-i-do">A Data Analyst & Full Stack Developer</p>
+          <div class="col-md-6">
+            <img src="image/Pic.png" alt="Profile" class="img-fluid">
               </div>
-              <div class="ra-main-btn fill-btn hire-btn-02">
-                <a href="#">Hire Me<i class="ri-user-follow-line"></i></a>
-              </div>
-            </div>
-          </div>
-          <a href="#" class="home-scroll-btn">
-            <i class="ri-mouse-line mouse-icon"></i>
-            <div>Scroll Down</div>
-            <i class="ri-arrow-down-s-line arrow-icon"></i>
-          </a>
         </div>
       </div>
     </section> 
@@ -355,7 +394,6 @@
                       <i class="ri-checkbox-circle-fill"></i>
                       <div class="skill-info">
                         <h5>Aws</h5>
-                      </div>
                     </div>
                   </div>
                   </div>
@@ -398,82 +436,75 @@
     </section>
 
     <!--========== Project ==========-->
-    <section class="ra-section nav-menu-section" id="project">
-      <div class="ra-container ra-sub-container">
-        <div class="ra-wrapper">
-          <div class="section-title">
-            <h3>Projects</h3>
-            <p>My Works</p>
-          </div>
-          <div class="section-content">
-            <div class="project-container">
+    <section id="projects" class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-5">My Projects</h2>
+        <div class="row g-4">
               <!-- Project Card 1 -->
-              <div class="project-card">
-                <a href="https://github.com/rameshsurya10/Alumni-Career-Analysis">
-                  <div class="card-img">
-                    <img src="image/project/project-1.jpg" alt="">
-                  </div>
-                  <div class="card-info">
-                    <span>Alumni Career Analysis</span>
-                    <h4>Insight-Driven Alumni Career Trends & Pathways</h4>
-                    <i class="ri-arrow-right-up-line card-btn"></i>
-                  </div>
+          <div class="col-md-4">
+            <div class="card project-card h-100">
+              <img src="image/project/project-1.jpg" class="card-img-top" alt="Project 1">
+              <div class="card-body">
+                <h5 class="card-title">Alumni Career Analysis</h5>
+                <p class="card-text">Insight-Driven Alumni Career Trends & Pathways</p>
+                <a href="https://github.com/rameshsurya10/Alumni-Career-Analysis" class="btn btn-outline-primary">
+                  View Project <i class="ri-arrow-right-up-line"></i>
                 </a>
+              </div>
+            </div>
               </div>
 
               <!-- Project Card 2 -->
-              <div class="project-card">
-                <a href="https://github.com/rameshsurya10/Website">
-                  <div class="card-img">
-                    <img src="image/project/project-2.jpg" alt="">
-                  </div>
-                  <div class="card-info">
-                    <span>Responsive Trading Course Website</span>
-                    <h4>A Full-Stack Platform for Modern Trading Education</h4>
-                    <i class="ri-arrow-right-up-line card-btn"></i>
-                  </div>
+          <div class="col-md-4">
+            <div class="card project-card h-100">
+              <img src="image/project/project-2.jpg" class="card-img-top" alt="Project 2">
+              <div class="card-body">
+                <h5 class="card-title">Responsive Trading Course Website</h5>
+                <p class="card-text">A Full-Stack Platform for Modern Trading Education</p>
+                <a href="https://github.com/rameshsurya10/Website" class="btn btn-outline-primary">
+                  View Project <i class="ri-arrow-right-up-line"></i>
                 </a>
+              </div>
+            </div>
               </div>
 
               <!-- Project Card 3 -->
-              <div class="project-card">
-                <a href="https://github.com/rameshsurya10/Trade-website">
-                  <div class="card-img">
-                    <img src="image/project/project-3.jpg" alt="">
-                  </div>
-                  <div class="card-info">
-                    <span>TradeMastery Webpage</span>
-                    <h4>Responsive Platform for Learning and Mastering Binary Trading</h4>
-                    <i class="ri-arrow-right-up-line card-btn"></i>
-                  </div>
+          <div class="col-md-4">
+            <div class="card project-card h-100">
+              <img src="image/project/project-3.jpg" class="card-img-top" alt="Project 3">
+              <div class="card-body">
+                <h5 class="card-title">TradeMastery Webpage</h5>
+                <p class="card-text">Responsive Platform for Learning and Mastering Binary Trading</p>
+                <a href="https://github.com/rameshsurya10/Trade-website" class="btn btn-outline-primary">
+                  View Project <i class="ri-arrow-right-up-line"></i>
                 </a>
+              </div>
+            </div>
               </div>
 
               <!-- Project Card 4 -->
-              <div class="project-card">
-                <a href="https://github.com/rameshsurya10/Uber-Supply-Demand-Gap-EDA">
-                  <div class="card-img">
-                    <img src="image/project/project-4.jpg" alt="">
-                  </div>
-                  <div class="card-info">
-                    <span>Uber Supply-Demand Gap Analysis</span>
-                    <h4>Optimizing Ride Availability with Data-Driven Solutions</h4>
-                    <i class="ri-arrow-right-up-line card-btn"></i>
-                  </div>
+          <div class="col-md-4">
+            <div class="card project-card h-100">
+              <img src="image/project/project-4.jpg" class="card-img-top" alt="Project 4">
+              <div class="card-body">
+                <h5 class="card-title">Uber Supply-Demand Gap Analysis</h5>
+                <p class="card-text">Optimizing Ride Availability with Data-Driven Solutions</p>
+                <a href="https://github.com/rameshsurya10/Uber-Supply-Demand-Gap-EDA" class="btn btn-outline-primary">
+                  View Project <i class="ri-arrow-right-up-line"></i>
                 </a>
+              </div>
+            </div>
               </div>
 
               <!-- Project Card 5 -->
-              <div class="project-card">
-                <a href="https://github.com/rameshsurya10/EDA-on-Vehicle-insurance-">
-                  <div class="card-img">
-                    <img src="image/project/project-5.jpg" alt="">
-                  </div>
-                  <div class="card-info">
-                    <span>EDA on Vehicle Insurance Data</span>
-                    <h4>Unveiling Key Insurance Trends Through Data Exploration</h4>
-                    <i class="ri-arrow-right-up-line card-btn"></i>
-                  </div>
+          <div class="col-md-4">
+            <div class="card project-card h-100">
+              <img src="image/project/project-5.jpg" class="card-img-top" alt="Project 5">
+              <div class="card-body">
+                <h5 class="card-title">EDA on Vehicle Insurance Data</h5>
+                <p class="card-text">Unveiling Key Insurance Trends Through Data Exploration</p>
+                <a href="https://github.com/rameshsurya10/EDA-on-Vehicle-insurance-" class="btn btn-outline-primary">
+                  View Project <i class="ri-arrow-right-up-line"></i>
                 </a>
               </div>
             </div>
@@ -483,126 +514,86 @@
     </section>
 
     <!--========== Contact Me ==========-->
-    <section class="ra-section nav-menu-section" id="contact">
-      <div class="ra-container ra-sub-container">
-         <div class="ta-wrapper">
-            <h3 style="font-family: var(--head-font-family); color: var(--color-01);">Contact Me</h3>
-            <p>Get In Touch</p>
+    <section id="contact" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5">Contact Me</h2>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-4">
+              <h4>Contact Info</h4>
+              <div class="d-flex align-items-center mb-3">
+                <i class="ri-mail-send-fill me-3 fs-4"></i>
+                <div>
+                  <p class="mb-0">Email</p>
+                  <h6>ramesharavindht@gmail.com</h6>
          </div>
-         <div class="section-content">
-            <div class="contact-container">
-               <!-- Contact Info Section -->
-              <div class="contact-info">
-                <h3>Contact Info</h3>
-                <ul class="contact-details">
-                  <li class="contact-item">
-                     <div class="contact-icon">
-                        <i class="ri-mail-send-fill"></i>
                      </div>
-                     <div class="contact-method">
-                        <span>E-Mail</span>
-                        <h4>ramesharavindht@gmail.com</h4>
-                        <a href="mailto:ramesharavindht@gmail.com" target="_blank"><span>Send <i class="ri-arrow-right-line"></i></span></a>
+              <!-- Add more contact info items -->
                      </div>
-                  </li>
-                  <li class="contact-item">
-                     <div class="contact-icon">
-                        <i class="ri-whatsapp-line"></i>
                      </div>
-                     <div class="contact-method">
-                        <span>What's App</span>
-                        <h4>+91 86xxx xx008</h4>
-                        <a href="https://wa.me/+918667258008?text=Hello%20there!%20How%20can%20I%20help%20you" target="_blank"><span>Send <i class="ri-arrow-right-line"></i></span></a>
+          <div class="col-md-6">
+            <form id="contactForm">
+              <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Name *" required>
                      </div>
-                  </li>
-                  <li class="contact-item">
-                     <div class="contact-icon">
-                        <i class="ri-linkedin-line"></i>
+              <div class="mb-3">
+                <input type="email" class="form-control" placeholder="Email *" required>
                      </div>
-                     <div class="contact-method">
-                        <span>Linked In</span>
-                        <h4>Ramesh Aravindh</h4>
-                        <a href="https://www.linkedin.com/in/ramesharavindh08/" target="_blank"><span>Send <i class="ri-arrow-right-line"></i></span></a>
+              <div class="mb-3">
+                <textarea class="form-control" rows="4" placeholder="Message *" required></textarea>
                      </div>
-                  </li>
-               </ul>
-                
-                 <h3>Social Info</h3>
-                 <ul class="contact-social-links">
-                    <li><a href="https://www.instagram.com/king_of_heart_robber/"><i class="ri-instagram-fill"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/ramesharavindh08/"><i class="ri-linkedin-fill"></i></a></li>
-                    <li><a href="https://github.com/rameshsurya10"><i class="ri-github-fill"></i></a></li>
-                 </ul>
-               </div>
-              
-                <!-- Contact Form Section -->
-               <section class="ra-section nav-menu-section" id="contact">
-                 <div class="ra-container">
-                   <div class="contact-form-body">
-                     <h2>Let's Work <span>Together...</span></h2>
-                     <p>Please fill out the form to contact me. Feel free to reach out via phone between 9:00 a.m. and 6:00 p.m.</p>
-               
-                     <form id="ra-contact-form" action="https://api.web3forms.com/submit" method="POST" data-netlify="true">
-                       <!-- REQUIRED FIELDS -->
-                       <input type="hidden" name="access_key" value="6ffbdb44-8976-433e-910c-ca2b7f5f5c19" />
-                       <input type="hidden" name="from_name" value="My Portfolio Website" />
-                       <input type="hidden" name="subject" value="New Contact Form Submission" />
-                       <input type="hidden" name="redirect" value="https://web3forms.com/success" />
-                       <input type="hidden" name="replyto" value="{{email}}" />
-                       <input type="hidden" name="subject" value="New Submission from Web3Forms">
-                       <input type="hidden" name="auto_response" value="Thank you for contacting me. I will get back to you soon!" />
-               
-                       <!-- HONEYPOT (SPAM PROTECTION) -->
-                       <input type="checkbox" name="botcheck" style="display: none;" />
-               
-                       <!-- FIELDS -->
-                       <div class="input-group">
-                         <input type="text" name="name" placeholder="Name *" required />
-                       </div>
-                       <div class="input-group">
-                         <input type="email" name="email" placeholder="Email *" required />
-                       </div>
-                       <div class="input-group">
-                         <input type="text" name="subject" placeholder="Your Subject *" required />
-                       </div>
-                       <div class="input-group">
-                         <textarea name="message" placeholder="Your Message *" required></textarea>
-                       </div>
-               
-                       <!-- CAPTCHA -->
-                       <div class="h-captcha" data-captcha="true"></div>
-
-                       
-               
-                       <!-- SUBMIT -->
-                       
-                       <div class="input-group send-message">
-                           <h4>Double Click To Submit</h4>
-                           <button class="ra-main-btn fill-btn submit-btn" ondblclick="myFunction()" type="submit">Send Message</button>
-                       </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
                      </form>
-                   </div>
-                 </div>
-               </section>
-               
-             
              </div>
           </div>
       </div>
    </section>
   </section>
 
-  <!--========== Swiper JS ==========-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loadingSection = document.getElementById('loadingSection');
+      const animationSection = document.getElementById('animationSection');
+      const loadingBar = document.getElementById('loadingBar');
+      const loadingPercentage = document.getElementById('loadingPercentage');
+
+      let progress = 0;
+      
+      function updateLoader() {
+        if (progress < 100) {
+          progress++;
+          loadingBar.style.width = progress + '%';
+          loadingPercentage.textContent = progress + '%';
+          
+          if (progress < 100) {
+            setTimeout(updateLoader, 30);
+          } else {
+            setTimeout(() => {
+              loadingSection.style.opacity = '0';
+              loadingSection.style.transition = 'opacity 1s';
+              
+              setTimeout(() => {
+                loadingSection.style.display = 'none';
+                animationSection.style.display = 'block';
+                
+                // Start animation
+                setTimeout(() => {
+                  animationSection.style.opacity = '1';
+                  initializeAnimation();
+                }, 100);
+              }, 1000);
+            }, 500);
+          }
+        }
+      }
+      // Start the loader
+      setTimeout(updateLoader, 100);
+    });
+  </script>
+
+  <!--========== JavaScript Files ==========-->
   <script src="jav/swiper-bundle.min.js"></script>
-
-  <!--========== EmailJS ==========-->
-  <script src="https://web3forms.com/client/script.js" async defer></script>
-
-  <!--========== Main javascript ==========-->
   <script src="jav/index.js"></script>
-  
-  <!--========== Transitions javascript ==========-->
-  <script src="jav/trans.js"></script>
 </body>
 </html>
       

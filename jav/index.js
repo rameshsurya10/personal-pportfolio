@@ -215,15 +215,18 @@ window.addEventListener("scroll", () => {
 ===================================================== */
 
 const themeBtn = document.querySelector(".theme-btn");
+const sunIcon = document.querySelector('.sun-icon');
+const moonIcon = document.querySelector('.moon-icon');
 
 themeBtn.addEventListener("click", () =>{
   // Change theme and save current theme on click the theme button.
 
-  themeBtn.classList.toggle("active-sun-icon");
-  document.body.classList.toggle("light-theme");
+  document.body.classList.toggle("dark-theme");
+  sunIcon.classList.toggle("active");
+  moonIcon.classList.toggle("active");
 
-  const getCurrentIcon = () => themeBtn.classList.contains("active-sun-icon") ? "sun" : "moon";
-  const getCursorTheme = () => document.classList.contains("light-theme") ? "light" : "dark";
+  const getCurrentIcon = () => sunIcon.classList.contains("active") ? "sun" : "moon";
+  const getCursorTheme = () => document.classList.contains("dark-theme") ? "dark" : "light";
 
   localStorage.setItem("ra-saved-icon",getCurrentIcon());
   localStorage.setItem("ra-saved-theme",getCurrentTheme());
@@ -234,8 +237,9 @@ themeBtn.addEventListener("click", () =>{
 const savedIcon = localStorage.getItem("ra-saved-icon");
 constsavedTheme = localStorage.getItem("ra-saved-theme");
 document.addEventListener("DOMContentLoaded", () => {
-  themeBtn.classList[savedIcon === "sun" ? "add" : "remove"]("actie-sun-icon");
-  document.body.classList[savedTheme === "light" ? "add" : "remove"]("light-theme");
+  sunIcon.classList[savedIcon === "sun" ? "add" : "remove"]("active");
+  moonIcon.classList[savedIcon === "moon" ? "add" : "remove"]("active");
+  document.body.classList[savedTheme === "dark" ? "add" : "remove"]("dark-theme");
 });
 
 /* =====================================================
@@ -245,4 +249,63 @@ document.addEventListener("DOMContentLoaded", () => {
 // Common reveal options to create reveal animations.
 
 // Target elements and specify options to create reveal animations.
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Theme toggler
+    const themeBtn = document.querySelector('.theme-btn');
+    const sunIcon = document.querySelector('.sun-icon');
+    const moonIcon = document.querySelector('.moon-icon');
+
+    // Bottom navigation
+    const menuShowBtn = document.querySelector('.menu-show-btn');
+    const menuHideBtn = document.querySelector('.menu-hide-btn');
+    const bottomNav = document.querySelector('.bottom-nav');
+    const menuItems = document.querySelectorAll('.menu-item a');
+
+    // Theme toggle function
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        sunIcon.classList.toggle('active');
+        moonIcon.classList.toggle('active');
+    });
+
+    // Bottom nav toggle
+    menuShowBtn?.addEventListener('click', () => {
+        bottomNav.classList.add('show');
+    });
+
+    menuHideBtn?.addEventListener('click', () => {
+        bottomNav.classList.remove('show');
+    });
+
+    // Menu item active state
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelector('.menu-item a.current')?.classList.remove('current');
+            item.classList.add('current');
+        });
+    });
+
+    // Scroll sections
+    const sections = document.querySelectorAll('.nav-menu-section');
+    const navLinks = document.querySelectorAll('.menu-item a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('current');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('current');
+            }
+        });
+    });
+});
       

@@ -1,0 +1,143 @@
+/* ===== BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+/* Remove iframe styles as they're not needed */
+iframe {
+  display: none;
+}
+
+/* ===== SECTION TRANSITIONS ===== */
+.section-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #D2D2D2;
+}
+
+#loadingSection {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  opacity: 1;
+  background-color: #000;
+}
+
+#animationSection {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  opacity: 0;
+  background-color: #D2D2D2;
+  transition: opacity 0.4s ease;
+}
+
+#animationSection::before {
+  position: absolute;
+  width: min(1800px, 100vw);
+  top: 0%;
+  left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+  content: '';
+  background-image: url(../image/bg_2.webp);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  pointer-events: none;
+}
+
+#portfolioSection {
+  position: absolute;
+  top: 100vh; /* Start below the animation section */
+  left: 0;
+  width: 100%;
+  opacity: 1;
+  z-index: 10;
+}
+
+/* Portfolio section elements need proper margin for scrolling */
+#portfolioSection .ra-section {
+  scroll-margin-top: 80px; /* For smooth scrolling to sections */
+}
+
+/* ===== LOADING SECTION STYLES ===== */
+.loading-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;  /* Increased size */
+  height: 300px; /* Increased size */
+  z-index: 10;   /* Increased z-index */
+}
+
+.loading-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* This ensures the image maintains its aspect ratio */
+}
+
+.loading-bar-container {
+  position: absolute;
+  bottom: 20%;
+  width: 300px; /* Increased width */
+  height: 6px;  /* Increased height */
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  z-index: 10;
+}
+
+.loading-bar {
+  height: 100%;
+  background: #fff;
+  width: 0;
+  border-radius: 3px;
+  transition: width 0.3s ease-in-out;
+}
+
+.loading-percentage {
+  position: absolute;
+  top: -25px;
+  right: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* ===== ANIMATION SECTION STYLES ===== */
+.banner {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* ===== SCROLL PROMPT ANIMATION ===== */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) translateX(-50%); }
+  50% { transform: translateY(-10px) translateX(-50%); }
+} 
