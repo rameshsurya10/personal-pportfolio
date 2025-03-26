@@ -6,6 +6,7 @@ const resumeTabs = document.querySelector(".resume-tabs");
 const resumePortfolioTabBtns = resumeTabs.querySelectorAll(".tab-btn");
 const resumeTabContents = document.querySelectorAll(".resume-tab-content");
 
+
 var resumeTabNav = function(resumeTabClick){
    resumeTabContents.forEach((resumeTabContents) =>{
       resumeTabContents.style.display = "none";
@@ -235,8 +236,46 @@ const savedIcon = localStorage.getItem("ra-saved-icon");
 constsavedTheme = localStorage.getItem("ra-saved-theme");
 document.addEventListener("DOMContentLoaded", () => {
   themeBtn.classList[savedIcon === "sun" ? "add" : "remove"]("actie-sun-icon");
-  document.body.classList[savedTheme === "light" ? "add" : "remove"]("light-theme");
+  // document.body.classList[savedTheme === "light" ? "add" : "remove"]("light-theme");
 });
+
+document.getElementById('ra-contact-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  // Get the hCaptcha response token
+  const captchaResponse = hcaptcha.getResponse();
+
+  console.log(captchaResponse);
+
+  if (!captchaResponse) {
+      alert("Please complete the CAPTCHA before submitting.");
+      return;
+  }
+
+  const formData = new FormData(this);
+  formData.append("h-captcha-response", captchaResponse);
+
+  try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+      });
+
+      const data = await response.json();
+      if (data.success) {
+          alert('Form submitted successfully!');
+          this.reset();
+          hcaptcha.reset(); // Reset CAPTCHA after successful submission
+      } else {
+          alert('Error: ' + data.message);
+      }
+  } catch (error) {
+      console.error('Error:', error);
+      alert('There was an error submitting the form.');
+  }
+});
+
+
 
 /* =====================================================
    ScrollReveal JS animations

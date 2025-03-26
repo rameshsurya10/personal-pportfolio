@@ -542,45 +542,43 @@
                      <h2>Let's Work <span>Together...</span></h2>
                      <p>Please fill out the form to contact me. Feel free to reach out via phone between 9:00 a.m. and 6:00 p.m.</p>
                
-                     <form id="ra-contact-form" action="https://api.web3forms.com/submit" method="POST" data-netlify="true">
-                       <!-- REQUIRED FIELDS -->
-                       <input type="hidden" name="access_key" value="6ffbdb44-8976-433e-910c-ca2b7f5f5c19" />
-                       <input type="hidden" name="from_name" value="My Portfolio Website" />
-                       <input type="hidden" name="subject" value="New Contact Form Submission" />
-                       <input type="hidden" name="redirect" value="https://web3forms.com/success" />
-                       <input type="hidden" name="replyto" value="{{email}}" />
-                       <input type="hidden" name="subject" value="New Submission from Web3Forms">
-                       <input type="hidden" name="auto_response" value="Thank you for contacting me. I will get back to you soon!" />
-               
-                       <!-- HONEYPOT (SPAM PROTECTION) -->
-                       <input type="checkbox" name="botcheck" style="display: none;" />
-               
-                       <!-- FIELDS -->
-                       <div class="input-group">
-                         <input type="text" name="name" placeholder="Name *" required />
-                       </div>
-                       <div class="input-group">
-                         <input type="email" name="email" placeholder="Email *" required />
-                       </div>
-                       <div class="input-group">
-                         <input type="text" name="subject" placeholder="Your Subject *" required />
-                       </div>
-                       <div class="input-group">
-                         <textarea name="message" placeholder="Your Message *" required></textarea>
-                       </div>
-               
-                       <!-- CAPTCHA -->
-                       <div class="h-captcha" data-captcha="true"></div>
-
-                       
-               
-                       <!-- SUBMIT -->
-                       
-                       <div class="input-group send-message">
-                           <h4>Double Click To Submit</h4>
-                           <button class="ra-main-btn fill-btn submit-btn" ondblclick="myFunction()" type="submit">Send Message</button>
-                       </div>
-                     </form>
+                     <form id="ra-contact-form">
+                      <!-- REQUIRED FIELDS -->
+                      <input type="hidden" name="access_key" value="6ffbdb44-8976-433e-910c-ca2b7f5f5c19" />
+                      <input type="hidden" name="from_name" value="My Portfolio Website" />
+                      <input type="hidden" name="subject" value="New Contact Form Submission" />
+                      <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+                      <input type="hidden" name="reply_to" value="{email}" />
+                      <input type="hidden" name="auto_response" value="Thank you for contacting me. I will get back to you soon!" />
+                  
+                      <!-- HONEYPOT (SPAM PROTECTION) -->
+                      <input type="checkbox" name="botcheck" style="display: none;" />
+                  
+                      <!-- FIELDS -->
+                      <div class="input-group">
+                          <input type="text" name="name" placeholder="Name *" required />
+                      </div>
+                      <div class="input-group">
+                          <input type="email" name="email" placeholder="Email *" required />
+                      </div>
+                      <div class="input-group">
+                          <input type="text" name="subject" placeholder="Your Subject *" required />
+                      </div>
+                      <div class="input-group">
+                          <textarea name="message" placeholder="Your Message *" required></textarea>
+                      </div>
+                  
+                      <!-- CAPTCHA -->
+                      <div class="h-captcha" data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"></div>
+                  
+                      <!-- SUBMIT -->
+                      <div class="input-group send-message">
+                          <h4>Double Click To Submit</h4>
+                          <button class="ra-main-btn fill-btn submit-btn" ondblclick="submitForm(event)" type="submit">Send Message</button>
+                      </div>
+                  </form>
+                  
+                  
                    </div>
                  </div>
                </section>
@@ -591,6 +589,10 @@
       </div>
    </section>
   </section>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 
   <!--========== Swiper JS ==========-->
   <script src="jav/swiper-bundle.min.js"></script>

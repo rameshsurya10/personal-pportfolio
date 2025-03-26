@@ -12,9 +12,6 @@ body, html {
 }
 
 /* Remove iframe styles as they're not needed */
-iframe {
-  display: none;
-}
 
 /* ===== SECTION TRANSITIONS ===== */
 .section-container {

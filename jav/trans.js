@@ -36,7 +36,7 @@ const loadingSection = document.getElementById('loadingSection');
 const animationSection = document.getElementById('animationSection');
 const portfolioSection = document.getElementById('portfolioSection');
 
-let animationVisible = false;
+let animationVisible = true;
 
 // Transition from loading to animation section
 function showAnimationSection() {
@@ -73,9 +73,9 @@ function showAnimationSection() {
         if (document.body.contains(scrollPrompt)) {
           document.body.removeChild(scrollPrompt);
         }
-      }, 1000);
-    }, 8000);
-  }, 1000);
+      }, 20);
+    }, 20);
+  }, 10);
 }
 
 // Simulate loading time with progress
@@ -90,7 +90,7 @@ const loadingInterval = setInterval(() => {
     loadingImage.style.opacity = '0'; // Fade out loading image
     
     // Transition to animation section
-    setTimeout(showAnimationSection, 1000);
+    setTimeout(showAnimationSection, 500);
   }
 }, 200); // Update every 200ms
 

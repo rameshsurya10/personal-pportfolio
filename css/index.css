@@ -1950,6 +1950,14 @@ textarea {
    .section-content{
       padding: 0;
    }
+
+   .avatar-container{
+      flex-direction: column; 
+   }
+
+   #about .section-content{
+      flex-direction: column; 
+   }
  
    .contact-info,
    .contact-form-body {
@@ -2009,10 +2017,19 @@ textarea {
    }
 }
  
-@media (max-width: 425px) {
+@media (max-width: 468px) {
    .ra-header{
       max-width: 100%;
       font-size: var(--h5-font-size);
       color: aquamarine;
+      display: none;
+   }
+
+   .to-top-btn{
+      display: none;
+   }
+
+   .home-scroll-btn{
+      display: none;
    }
 }
