@@ -988,7 +988,7 @@ body{
    color: var(--color-01);
    font-size: var(--medium-font-size);
    font-weight: var(--font-medium);
-   padding: 12px 0;
+   /* padding: 12px 0; */
    border-radius: 25px;
    cursor: pointer;
    transition: .3s;
@@ -1474,6 +1474,7 @@ body{
   margin-bottom: 10px;
   text-align: center;
   font-weight: var(--font-semi-bold);
+  color: var(--primary-color);   
 }
 
 .contact-form-body h2 span {
@@ -1596,10 +1597,10 @@ textarea {
    .ra-container {
      padding: 2.5rem 4rem;
    }
- 
+/*  
    .section-content {
      padding: 2rem 3rem;
-   }
+   } */
  
    .project-container {
      grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
@@ -1917,6 +1918,8 @@ textarea {
      margin-top: 2rem;
    }
 
+
+
  
    .nav-menu-section .nav-item a {
      color: white;
@@ -1926,10 +1929,26 @@ textarea {
  
    /* ========== CONTACT SECTION ========== */
    .contact-container {
-     padding: 1rem;
      flex-direction: column;
      gap: 2rem;
      width: 100%;
+   }
+
+   /* Lp code */
+   #contact{
+      padding: 0;
+   }
+
+   .ra-container{
+      padding: 0;
+   }
+
+   .project-container{
+      flex-direction: column;
+   }
+
+   .section-content{
+      padding: 0;
    }
  
    .contact-info,
