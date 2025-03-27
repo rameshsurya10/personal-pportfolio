@@ -23,13 +23,144 @@
   <!--========== Animation CSS ==========-->
   <link rel="stylesheet" href="animation/ani.css">
 </head>
+
+<style>
+  /* ===== LOADING SECTION ONLY STYLES ===== */
+#loadingSection {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #c7c5c5; /* dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Canvas */
+#loadingSection canvas#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Wrapper for center content */
+#loadingSection .loading-center-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Loading Image */
+#loadingSection .loading-image {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+#loadingSection .loading-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+#loadingSection .loading-image .shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  animation: shineMove 2s infinite;
+  border-radius: 12px;
+}
+
+/* Loading Bar */
+#loadingSection .loading-bar-container {
+  width: 60%;
+  max-width: 400px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+#loadingSection .loading-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(to right, #606a68, #8397cd);
+  border-radius: 10px;
+  transition: width 0.3s ease-in-out;
+  position: relative;
+}
+
+#loadingSection .loading-percentage {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Animations */
+@keyframes shineMove {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 576px) {
+  #loadingSection .loading-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  #loadingSection .loading-bar-container {
+    width: 80%;
+    height: 12px;
+  }
+
+  #loadingSection .loading-percentage {
+    font-size: 12px;
+    right: 10px;
+  }
+}
+
+</style>
+
 <body>
 
   <!-- ===== LOADING SECTION ===== -->
-  <section id="loadingSection" class="section-container">
-    <canvas id="canvas"></canvas>
+<!-- ===== LOADING SECTION ===== -->
+<section id="loadingSection" class="section-container">
+  <canvas id="canvas"></canvas>
+
+  <!-- Center wrapper -->
+  <div class="loading-center-wrapper">
     <div class="loading-image" id="loadingImage">
-      <img src="image/loading.png" alt="Loading Model" style="width: 100%; height: auto;" />
+      <img src="image/loading.png" alt="Loading Model" />
       <div class="shine"></div>
     </div>
     <div class="loading-bar-container">
@@ -37,7 +168,8 @@
         <div class="loading-percentage" id="loadingPercentage">0%</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ===== ANIMATION SECTION ===== -->
   <section id="animationSection" class="section-container">
