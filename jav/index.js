@@ -36,7 +36,7 @@ resumePortfolioTabBtns.forEach((resumePortfolioTabBtns, i) =>{
    Send/Receive emails from contact form - EmailJS
 ===================================================== */
 
-function myFunction() {
+function myFun() {
    document.getElementById("ra-contact-form").reset();
  }
 
@@ -283,5 +283,11 @@ document.getElementById('ra-contact-form').addEventListener('submit', async func
 
 // Common reveal options to create reveal animations.
 
-// Target elements and specify options to create reveal animations.
-      
+function hamburg(){
+  const navbar = document.querySelector(".dropdown")
+  navbar.style.transform = "translateY(0px)"
+}
+function cancel(){
+  const navbar = document.querySelector(".dropdown")
+  navbar.style.transform = "translateY(-400px)"
+}
