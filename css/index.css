@@ -1538,60 +1538,64 @@ textarea {
 /* =========================================
    Footer
 ========================================= */
-.ra-footer {
-   background: var(--footer-bg);
-   padding-top: 100px;
-   padding-bottom: 80px; /* Adjusted padding for the footer */
-   text-align: center; /* Ensures text is centered in each row */
+
+footer {
+   background: var(--card-bg);
+   padding: 50px 0;
+   color: var(--color-02);
+   text-align: center;
+   position: relative;
 }
 
-.ra-footer .ra-container {
-  display: flex;
-  flex-direction: column; /* Stack content vertically */
-  align-items: center; /* Center the content horizontally */
-  justify-content: center;
+footer .inner {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 2rem;
+   max-width: 1200px;
+   margin: 0 auto;
 }
 
-.ra-logo {
-  font-size: 2rem; /* Adjust size for the logo */
-  margin-bottom: 30px; /* Space between logo and the next row */
+logo {
+   font-size: 2rem;
+   font-weight: var(--font-bold);
+   color: var(--color-02);
 }
 
-.footer-menu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  column-gap: 22px;
-  row-gap: 10px; /* Space between menu items */
-  margin-bottom: 30px; /* Space between menu and the copyright text */
+footer .inner h2 {
+   font-size: 2rem;
+   font-weight: var(--font-bold);
+   color: var(--color-02);
+   margin-bottom: 20px;
 }
 
-.footer-menu .menu-item a {
-  color: var(--color-01);
-  font-size: calc(var(--tiny-font-size) - 0.07rem);
-  font-weight: var(--font-medium);
-  text-transform: uppercase;
-  border-radius: 15px;
-  transition: 0.3s;
-  padding: 8px 14px; /* Added padding for better touch targets */
+footer .inner p {
+   font-size: 1.2rem;
+   color: var(--color-04);
+   margin-bottom: 20px;
+   line-height: 1.6;
 }
 
-.footer-menu .menu-item a:hover {
-  color: var(--color-03);
-  background: var(--color-01);
+footer .inner .social-links {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 20px;
 }
 
-.ra-footer .copy-right {
-  color: var(--color-04);
-  font-size: var(--small-font-size);
+social-links li {
+   font-size: 2rem;
+   width: 55px;
+   height: 55px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 50%;
+   cursor: pointer;
+   transition: transform 0.3s ease;
 }
 
-/* Add some margin to the copyright text to give space from the menu */
-.ra-footer .copy-right a:hover {
-  color: var(--color-01);
-  transition: 0.3s;
-}
+
 
 /* ====== For screens ≤ 1440px ====== */
 @media screen and (max-width: 1440px) {
