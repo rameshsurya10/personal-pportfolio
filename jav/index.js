@@ -36,9 +36,57 @@ resumePortfolioTabBtns.forEach((resumePortfolioTabBtns, i) =>{
    Send/Receive emails from contact form - EmailJS
 ===================================================== */
 
-function myFun() {
-   document.getElementById("ra-contact-form").reset();
- }
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("ra-contact-form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector("button[type='submit']");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    const hcaptchaToken = hcaptcha.getResponse();
+
+    if (!hcaptchaToken) {
+      alert("⚠️ Please complete the hCaptcha verification.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send Message";
+      return;
+    }
+
+    const formData = new FormData(form);
+    formData.append("h-captcha-response", hcaptchaToken);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      // Check if fetch call was successful HTTP-wise
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      // Check if API responded with success
+      if (result.success) {
+        alert("✅ Message sent successfully!");
+        form.reset();
+        hcaptcha.reset();
+      } else {
+        // If API responded but with failure
+        alert("❌ Error: " + (result.message || "Something went wrong."));
+      }
+    } 
+    finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send Message";
+    }
+  });
+});
 
 /*=====================================================
    Shrink the height of the header on scroll

@@ -1534,8 +1534,6 @@ textarea {
    transition: background 0.3s ease;
  }
 
-
-
 /* ====== For screens ≤ 1440px ====== */
 @media screen and (max-width: 1440px) {
    .ra-container {
@@ -1665,7 +1663,6 @@ textarea {
      overflow: hidden;
    }
  
-
 }
 
 @media screen and (max-width: 991px) {
@@ -1784,8 +1781,6 @@ textarea {
      max-width: 100%;
      overflow: hidden;
    }
- 
-   /* ========== FOOTER ========== */
 
 }
 
