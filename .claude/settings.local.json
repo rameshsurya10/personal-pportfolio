@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh repo list:*)",
+      "Bash(python3:*)",
+      "Bash(cat:*)",
+      "Bash(git -C /home/development1/Desktop/personal-pportfolio status --short)"
+    ]
+  }
+}

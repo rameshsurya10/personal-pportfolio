@@ -339,3 +339,69 @@ function cancel(){
   const navbar = document.querySelector(".dropdown")
   navbar.style.transform = "translateY(-400px)"
 }
+
+/* =====================================================
+   Project Filter Functionality
+===================================================== */
+document.addEventListener('DOMContentLoaded', function() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+  let isAnimating = false;
+
+  if (filterButtons.length > 0 && projectCards.length > 0) {
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Prevent rapid clicking during animation
+        if (isAnimating) return;
+        isAnimating = true;
+
+        // Remove active class and aria-selected from all buttons
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+
+        // Add active class and aria-selected to clicked button
+        button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        // Batch DOM operations - separate cards to show and hide
+        const cardsToShow = [];
+        const cardsToHide = [];
+
+        projectCards.forEach((card) => {
+          const category = card.getAttribute('data-category');
+          card.classList.remove('show', 'hidden');
+
+          if (filterValue === 'all' || category === filterValue) {
+            cardsToShow.push(card);
+          } else {
+            cardsToHide.push(card);
+          }
+        });
+
+        // Hide cards immediately
+        cardsToHide.forEach(card => {
+          card.classList.add('hidden');
+        });
+
+        // Show cards with staggered animation using correct index
+        cardsToShow.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.remove('hidden');
+            card.classList.add('show');
+          }, index * 100);
+        });
+
+        // Reset animation lock after longest animation completes
+        const longestDelay = cardsToShow.length * 100;
+        setTimeout(() => {
+          isAnimating = false;
+        }, longestDelay + 500);
+      });
+    });
+  }
+});
+
