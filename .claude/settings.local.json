@@ -4,7 +4,18 @@
       "Bash(gh repo list:*)",
       "Bash(python3:*)",
       "Bash(cat:*)",
-      "Bash(git -C /home/development1/Desktop/personal-pportfolio status --short)"
+      "Bash(git -C /home/development1/Desktop/personal-pportfolio status --short)",
+      "Bash(du -sh:*)",
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(sort:*)",
+      "Bash(dpkg:*)",
+      "Bash(sudo apt install:*)",
+      "Bash(apt list:*)",
+      "Bash(apt-cache search:*)",
+      "Bash(chmod:*)",
+      "Bash(ls:*)",
+      "Bash(du:*)"
     ]
   }
 }
