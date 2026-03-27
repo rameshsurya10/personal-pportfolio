@@ -102,32 +102,7 @@ window.addEventListener("scroll", () => {
    Bottom navigation menu
 ===================================================== */
 
-// Each bottom navigation menu items active on page scroll.
-
-window.addEventListener("scroll", () => {
-   const navMenuSections = document.querySelectorAll(".nav-menu-section");
-   const scrollY = window.pageYOffset;
-
-   navMenuSections.forEach((navMenuSection) => {
-      let sectionHeight = navMenuSection.offsetHeigt;
-      let sectionTop = navMenuSection.offsetTop -50;
-      let id = navMenuSection.getAttribute("id");
-
-      if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-         document.querySelector(".bottom-nav .menu li a [href*=" + id + "]").classList.add("current");
-      }else{
-         document.querySelector(".bottom-nav .menu li a [href*=" + id + "]").classList.remove("current");
-      }
-   });
-});
-
-// Javascript to show bottom navigation menu on home(page load).
-
-window.addEventListener("DOMContentLoaded", () =>{
-   const bottomNav = document.querySelector(".bottom-nav");
-
-   bottomNav.classList.toggle("active", window.scrollY < 10);
-});
+// Bottom nav active state and scroll detection handled in DOMContentLoaded below
 
 document.addEventListener("DOMContentLoaded", () => {
    const bottomNav = document.querySelector(".bottom-nav");
@@ -265,80 +240,27 @@ window.addEventListener("scroll", () => {
 
 const themeBtn = document.querySelector(".theme-btn");
 
-themeBtn.addEventListener("click", () =>{
-  // Change theme and save current theme on click the theme button.
-
+themeBtn.addEventListener("click", () => {
   themeBtn.classList.toggle("active-sun-icon");
   document.body.classList.toggle("light-theme");
 
-  const getCurrentIcon = () => themeBtn.classList.contains("active-sun-icon") ? "sun" : "moon";
-  const getCursorTheme = () => document.classList.contains("light-theme") ? "light" : "dark";
+  const currentIcon = themeBtn.classList.contains("active-sun-icon") ? "sun" : "moon";
+  const currentTheme = document.body.classList.contains("light-theme") ? "light" : "dark";
 
-  localStorage.setItem("ra-saved-icon",getCurrentIcon());
-  localStorage.setItem("ra-saved-theme",getCurrentTheme());
+  localStorage.setItem("ra-saved-icon", currentIcon);
+  localStorage.setItem("ra-saved-theme", currentTheme);
 });
 
-  // Get saved theme icon and theme on document loaded.
-
+// Restore saved theme on page load
 const savedIcon = localStorage.getItem("ra-saved-icon");
-constsavedTheme = localStorage.getItem("ra-saved-theme");
+const savedTheme = localStorage.getItem("ra-saved-theme");
 document.addEventListener("DOMContentLoaded", () => {
-  themeBtn.classList[savedIcon === "sun" ? "add" : "remove"]("actie-sun-icon");
-  // document.body.classList[savedTheme === "light" ? "add" : "remove"]("light-theme");
-});
-
-document.getElementById('ra-contact-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-
-  // Get the hCaptcha response token
-  const captchaResponse = hcaptcha.getResponse();
-
-  console.log(captchaResponse);
-
-  if (!captchaResponse) {
-      alert("Please complete the CAPTCHA before submitting.");
-      return;
-  }
-
-  const formData = new FormData(this);
-  formData.append("h-captcha-response", captchaResponse);
-
-  try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData
-      });
-
-      const data = await response.json();
-      if (data.success) {
-          alert('Form submitted successfully!');
-          this.reset();
-          hcaptcha.reset(); // Reset CAPTCHA after successful submission
-      } else {
-          alert('Error: ' + data.message);
-      }
-  } catch (error) {
-      console.error('Error:', error);
-      alert('There was an error submitting the form.');
-  }
+  themeBtn.classList[savedIcon === "sun" ? "add" : "remove"]("active-sun-icon");
+  document.body.classList[savedTheme === "light" ? "add" : "remove"]("light-theme");
 });
 
 
 
-/* =====================================================
-   ScrollReveal JS animations
-===================================================== */
-
-// Common reveal options to create reveal animations.
-
-function hamburg(){
-  const navbar = document.querySelector(".dropdown")
-  navbar.style.transform = "translateY(0px)"
-}
-function cancel(){
-  const navbar = document.querySelector(".dropdown")
-  navbar.style.transform = "translateY(-400px)"
-}
 
 /* =====================================================
    Project Filter Functionality

@@ -20,16 +20,12 @@
   <!--========== Performance: Preconnect to external domains ==========-->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="dns-prefetch" href="https://unpkg.com">
 
   <!--========== Critical CSS: Preload main stylesheet ==========-->
   <link rel="preload" href="css/index.css" as="style">
   <link rel="preload" href="image/loading.png" as="image">
-
-  <!--========== Swiper CSS ==========-->
-  <link rel="stylesheet" href="css/swiper-bundle.min.css">
 
   <!--========== Main style sheet ==========-->
   <link rel="stylesheet" href="css/index.css">
@@ -45,8 +41,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css"></noscript>
 
-  <!--========== THREE.js for loading page (defer) ==========-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <!--========== THREE.js removed: was rendering empty scene, wasting ~600KB ==========-->
 
   <!--========== Animation CSS ==========-->
   <link rel="stylesheet" href="animation/ani.css">
@@ -54,145 +49,18 @@
   <!--========== Theme: Prevent flash of unstyled content ==========-->
   <script>
     (function() {
-      const theme = localStorage.getItem('theme');
+      const theme = localStorage.getItem('ra-saved-theme');
       if (theme === 'light') document.documentElement.classList.add('light-theme');
     })();
   </script>
 </head>
 
-<style>
-  /* ===== LOADING SECTION ONLY STYLES ===== */
-#loadingSection {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: #c7c5c5; /* dark background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 9999;
-  overflow: hidden;
-}
-
-/* Canvas */
-#loadingSection canvas#canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-/* Wrapper for center content */
-#loadingSection .loading-center-wrapper {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-}
-
-/* Loading Image */
-#loadingSection .loading-image {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  animation: pulse 1.5s infinite ease-in-out;
-}
-
-#loadingSection .loading-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-#loadingSection .loading-image .shine {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  animation: shineMove 2s infinite;
-  border-radius: 12px;
-}
-
-/* Loading Bar */
-#loadingSection .loading-bar-container {
-  width: 60%;
-  max-width: 400px;
-  height: 16px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  position: relative;
-}
-
-#loadingSection .loading-bar {
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(to right, #606a68, #8397cd);
-  border-radius: 10px;
-  transition: width 0.3s ease-in-out;
-  position: relative;
-}
-
-#loadingSection .loading-percentage {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  font-size: 14px;
-  font-weight: bold;
-  color: #ffffff;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-/* Animations */
-@keyframes shineMove {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-/* ===== Responsive Adjustments ===== */
-@media (max-width: 576px) {
-  #loadingSection .loading-image {
-    width: 150px;
-    height: 150px;
-  }
-
-  #loadingSection .loading-bar-container {
-    width: 80%;
-    height: 12px;
-  }
-
-  #loadingSection .loading-percentage {
-    font-size: 12px;
-    right: 10px;
-  }
-}
-
-</style>
+<!-- Loading styles are in css/transitions.css -->
 
 <body>
 
   <!-- ===== LOADING SECTION ===== -->
-<!-- ===== LOADING SECTION ===== -->
 <section id="loadingSection" class="section-container">
-  <canvas id="canvas"></canvas>
-
   <!-- Center wrapper -->
   <div class="loading-center-wrapper">
     <div class="loading-image" id="loadingImage">
@@ -211,23 +79,23 @@
   <section id="animationSection" class="section-container">
     <div class="banner">
       <div class="slider" style="--quantity: 10">
-        <div class="item" style="--position: 1"><img src="image/img-1.jpg" alt=""></div>
-        <div class="item" style="--position: 2"><img src="image/img-2.jpg" alt=""></div>
-        <div class="item" style="--position: 3"><img src="image/img-3.jpg" alt=""></div>
-        <div class="item" style="--position: 4"><img src="image/img-4.avif" alt=""></div>
-        <div class="item" style="--position: 5"><img src="image/img-5.avif" alt=""></div>
-        <div class="item" style="--position: 6"><img src="image/img-6.jpg" alt=""></div>
-        <div class="item" style="--position: 7"><img src="image/img-7.jpg" alt=""></div>
-        <div class="item" style="--position: 8"><img src="image/img-8.avif" alt=""></div>
-        <div class="item" style="--position: 9"><img src="image/img-9.avif" alt=""></div>
-        <div class="item" style="--position: 10"><img src="image/img-10.jpg" alt=""></div>
+        <div class="item" style="--position: 1"><img src="image/img-1.jpg" alt="Portfolio showcase 1"></div>
+        <div class="item" style="--position: 2"><img src="image/img-2.jpg" alt="Portfolio showcase 2"></div>
+        <div class="item" style="--position: 3"><img src="image/img-3.jpg" alt="Portfolio showcase 3"></div>
+        <div class="item" style="--position: 4"><img src="image/img-4.avif" alt="Portfolio showcase 4"></div>
+        <div class="item" style="--position: 5"><img src="image/img-5.avif" alt="Portfolio showcase 5"></div>
+        <div class="item" style="--position: 6"><img src="image/img-6.jpg" alt="Portfolio showcase 6"></div>
+        <div class="item" style="--position: 7"><img src="image/img-7.jpg" alt="Portfolio showcase 7"></div>
+        <div class="item" style="--position: 8"><img src="image/img-8.avif" alt="Portfolio showcase 8"></div>
+        <div class="item" style="--position: 9"><img src="image/img-9.avif" alt="Portfolio showcase 9"></div>
+        <div class="item" style="--position: 10"><img src="image/img-10.jpg" alt="Portfolio showcase 10"></div>
       </div>
       <div class="content">
         <h1 data-content="RA">RA</h1>
         <div class="author" style="color: whitesmoke;">
-          <h2>Sneak Out</h2>
-          <p><b>Data Analyst <br> Full Stack</b></p>
-          <p>"Success is not final, failure is not fatal—it is the courage to continue that counts." 🚀</p>
+          <h2>Welcome</h2>
+          <p><b>Data Analyst <br> Full Stack Developer</b></p>
+          <p>"Success is not final, failure is not fatal — it is the courage to continue that counts."</p>
         </div>
         <div class="model"></div>
       </div>
@@ -257,7 +125,7 @@
           </div>
           <div class="header-btn">
             <div class="ra-main-btn border-btn lets-talk-btn">
-              <a href="#contact">Lets's Talk</a>
+              <a href="#contact">Let's Talk</a>
             </div>
             <a href="#contact" class="lets-talk-icon"><i class="ri-chat-1-fill"></i></a>
             <div class="theme-btn">
@@ -297,14 +165,14 @@
             <span>Follow On</span>
             <div class="social-line"></div>
             <ul class="social-icon">
-              <li><a href="https://github.com/rameshsurya10"><i class="ri-github-fill"></i></a></li>
-              <li><a href="https://www.instagram.com/king_of_heart_robber/"><i class="ri-instagram-fill"></i></a></li>
-              <li><a href="https://www.linkedin.com/in/ramesharavindh08/"><i class="ri-linkedin-fill"></i></a></li>
+              <li><a href="https://github.com/rameshsurya10" target="_blank" rel="noopener noreferrer"><i class="ri-github-fill"></i></a></li>
+              <li><a href="https://www.instagram.com/king_of_heart_robber/" target="_blank" rel="noopener noreferrer"><i class="ri-instagram-fill"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/ramesharavindh08/" target="_blank" rel="noopener noreferrer"><i class="ri-linkedin-fill"></i></a></li>
             </ul>
           </div>
           <div class="avatar-container">
             <div class="ra-main-btn hire-btn-01" data-aos="fade-top" data-aos-duration="1500" data-aos-delay="300" data-aos-once="false">
-              <a href="#contact">Hire Me <i class="ri-user-folow-line"></i></a>
+              <a href="#contact">Hire Me <i class="ri-user-follow-line"></i></a>
             </div>
             <div class="avatar-img" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100" data-aos-once="false">
               <img src="image/Pic.png" alt="Ramesh Aravindh - Full Stack Developer" loading="eager" fetchpriority="high" decoding="async">
@@ -391,7 +259,7 @@
                   <i class="ri-mail-line"></i>
                   <div>
                     <span class="info-label">Email</span>
-                    <span class="info-value">ramesharavindh08@gmail.com</span>
+                    <span class="info-value">ramesharavindht@gmail.com</span>
                   </div>
                 </div>
                 <div class="info-item">
@@ -433,7 +301,7 @@
         <div class="ra-wrapper">
           <div class="section-title" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="300" data-aos-once="false">
             <h3>My Resume</h3>
-            <p>Combination of Skill's & Experience</p>
+            <p>Combination of Skills & Experience</p>
           </div>
           <div class="resume-tabs" data-aos="slide-down" data-aos-duration="1500" data-aos-delay="400" data-aos-once="false">            <a class="tab-btn active"><i class="ri-graduation-cap-line"></i>Education</a>
             <a class="tab-btn"><i class="ri-user-settings-line"></i>Personal Skills</a>
@@ -574,7 +442,7 @@
                     <div class="skill">
                       <i class="ri-checkbox-circle-fill"></i>
                       <div class="skill-info">
-                        <h5>Aws</h5>
+                        <h5>AWS</h5>
                       </div>
                     </div>
                   </div>
@@ -970,7 +838,7 @@
                     <i class="ri-whatsapp-line"></i>
                   </div>
                   <div class="contact-method">
-                    <span>What's App</span>
+                    <span>WhatsApp</span>
                     <h4>+91 86xxx xx008</h4>
                     <a href="https://wa.me/+918667258008?text=Hello%20there!%20How%20can%20I%20help%20you" target="_blank"><span>Send <i class="ri-arrow-right-line"></i></span></a>
                   </div>
@@ -980,7 +848,7 @@
                     <i class="ri-linkedin-line"></i>
                   </div>
                   <div class="contact-method">
-                    <span>Linked In</span>
+                    <span>LinkedIn</span>
                     <h4>Ramesh Aravindh</h4>
                     <a href="https://www.linkedin.com/in/ramesharavindh08/" target="_blank"><span>Send <i class="ri-arrow-right-line"></i></span></a>
                   </div>
@@ -989,67 +857,52 @@
               
               <h3>Social Info</h3>
               <ul class="contact-social-links">
-                <li><a href="https://www.instagram.com/king_of_heart_robber/"><i class="ri-instagram-fill"></i></a></li>
-                <li><a href="https://www.linkedin.com/in/ramesharavindh08/"><i class="ri-linkedin-fill"></i></a></li>
-                <li><a href="https://github.com/rameshsurya10"><i class="ri-github-fill"></i></a></li>
+                <li><a href="https://www.instagram.com/king_of_heart_robber/" target="_blank" rel="noopener noreferrer"><i class="ri-instagram-fill"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/ramesharavindh08/" target="_blank" rel="noopener noreferrer"><i class="ri-linkedin-fill"></i></a></li>
+                <li><a href="https://github.com/rameshsurya10" target="_blank" rel="noopener noreferrer"><i class="ri-github-fill"></i></a></li>
               </ul>
             </div>
             
-      <!-- Contact Form Section -->
-      
-      <section class="ra-section nav-menu-section" id="contact">
-        <div class="ra-container" data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="500" data-aos-once="true">
-          <div class="contact-form-body">
-            <h2>Let's Work <span>Together...</span></h2>
-            <p>Please fill out the form to contact me. Feel free to reach out via phone between 9:00 a.m. and 6:00 p.m.</p>
-      
-            <form id="ra-contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-      
-              <!-- Web3Forms Access Key -->
-              <input type="hidden" name="access_key" value="6ffbdb44-8976-433e-910c-ca2b7f5f5c19" />
-              <input type="hidden" name="from_name" value="My Portfolio">
+            <!-- Contact Form -->
+            <div class="contact-form-wrapper" data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="500" data-aos-once="true">
+              <div class="contact-form-body">
+                <h2>Let's Work <span>Together...</span></h2>
+                <p>Please fill out the form to contact me. Feel free to reach out via phone between 9:00 a.m. and 6:00 p.m.</p>
 
-              <!-- Name -->
-              <div class="input-group">
-                <input type="text" name="name" placeholder="Name *" required />
+                <form id="ra-contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                  <!-- Web3Forms Access Key -->
+                  <input type="hidden" name="access_key" value="6ffbdb44-8976-433e-910c-ca2b7f5f5c19" />
+                  <input type="hidden" name="from_name" value="My Portfolio">
+
+                  <div class="input-group">
+                    <input type="text" name="name" placeholder="Name *" required />
+                  </div>
+                  <div class="input-group">
+                    <input type="email" name="email" placeholder="Email Address *" required />
+                  </div>
+                  <div class="input-group">
+                    <input type="text" name="subject" placeholder="Subject *" required />
+                  </div>
+                  <div class="input-group">
+                    <textarea name="message" rows="5" placeholder="Your Message *" required></textarea>
+                  </div>
+
+                  <!-- hCaptcha -->
+                  <div class="h-captcha" data-captcha="true"></div>
+
+                  <div class="input-group send-message">
+                    <button type="submit" class="ra-main-btn fill-btn submit-btn">Send Message</button>
+                  </div>
+                </form>
               </div>
-      
-              <!-- Email -->
-              <div class="input-group">
-                <input type="email" name="email" placeholder="Email Address *" required />
-              </div>
-      
-              <!-- Subject -->
-              <div class="input-group">
-                <input type="text" name="subject" placeholder="Subject *" required />
-              </div>
-      
-              <!-- Message -->
-              <div class="input-group">
-                <textarea name="message" rows="5" placeholder="Your Message *" required></textarea>
-              </div>
-      
-              <!-- hCaptcha -->
-                <div class="h-captcha" data-captcha="true"></div>
-      
-              <!-- Submit -->
-              <div class="input-group send-message">
-                <button type="submit" class="ra-main-btn fill-btn submit-btn">Send Message</button>
-              </div>
-      
-            </form>
+            </div>
           </div>
         </div>
-      </section>
-      
-    </div>
-  </section>
+      </div>
+    </section>
 
 
-  <!--========== Swiper JS ==========-->
-  <script src="jav/swiper-bundle.min.js" defer></script>
-
-  <!--========== EmailJS ==========-->
+  <!--========== Web3Forms ==========-->
   <script src="https://web3forms.com/client/script.js" async defer></script>
 
   <!--========== Main javascript ==========-->
@@ -1068,8 +921,6 @@
     });
   </script>
 
-  <!--========== Bootstrap JS (only if needed) ==========-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 
 </body>
 </html>
