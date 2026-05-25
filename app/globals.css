@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  /* DARK is now primary — these are the dark-mode values, applied by default */
+  --color-surface: #0d0a08;          /* near-black, warm-tinted bg */
+  --color-surface-raised: #15110e;   /* slightly lighter raised surface */
+  --color-ink: #efeae3;              /* warm off-white text */
+  --color-ink-muted: #8a8278;        /* secondary text */
+  --color-accent: #efeae3;           /* same as ink — chroma intentionally dropped */
+  --color-accent-soft: #15110e;      /* used for soft fills, equals raised surface */
+  --color-border: #2a241f;           /* hairline borders */
+
+  --radius-card: 0.75rem;
+  --shadow-soft: 0 1px 0 rgba(239, 234, 227, 0.04), 0 12px 32px rgba(0, 0, 0, 0.5);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+/* Light mode now becomes the secondary, opt-in theme */
+.light {
+  --color-surface: #f5f1ea;
+  --color-surface-raised: #ffffff;
+  --color-ink: #15110e;
+  --color-ink-muted: #6b6258;
+  --color-accent: #15110e;
+  --color-accent-soft: #f5f1ea;
+  --color-border: #e2dccf;
+  --shadow-soft: 0 1px 0 rgba(21, 17, 14, 0.04), 0 12px 32px rgba(21, 17, 14, 0.06);
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* View Transitions — browsers that don't support this ignore it entirely */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.21, 0.47, 0.32, 0.98);
+}
+
+/* Theme toggle uses View Transitions to radiate a circular reveal from the click point.
+   The OLD snapshot stays put; the NEW one expands outward via clip-path.
+   --theme-x / --theme-y / --theme-r are set imperatively by the toggle just before the transition. */
+::view-transition-old(root) {
+  animation: none;
+}
+::view-transition-new(root) {
+  animation: theme-reveal 0.55s cubic-bezier(0.21, 0.47, 0.32, 0.98) both;
+}
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--theme-x, 50%) var(--theme-y, 50%));
+  }
+  to {
+    clip-path: circle(var(--theme-r, 100vmax) at var(--theme-x, 50%) var(--theme-y, 50%));
+  }
+}
