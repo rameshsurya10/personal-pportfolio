@@ -2,7 +2,7 @@ import type { TimelineEntry } from "@/lib/types";
 
 export const timeline: TimelineEntry[] = [
   {
-    title: "Python Developer",
+    title: "Full-Stack Developer",
     organization: "Redlitmus Communications · Full-time",
     period: "May 2025 — Present",
     kind: "experience",
