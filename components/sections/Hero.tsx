@@ -4,7 +4,17 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/Button";
+import TextType from "@/components/ui/TextType";
+import { BlurText } from "@/components/ui/BlurText";
 import { site } from "@/content/site";
+
+// Soft repeating pulse for the ↳ arrow — adds a sign of life to the
+// otherwise-static eyebrow rows without competing for attention.
+const arrowPulse = {
+  initial: { opacity: 0.4 },
+  animate: { opacity: [0.4, 1, 0.4] },
+  transition: { duration: 2.4, repeat: Infinity, ease: "easeInOut" as const },
+};
 
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
@@ -17,13 +27,19 @@ export function Hero() {
 
   const eyebrowJSX = (
     <p className="font-mono text-xs uppercase tracking-widest text-ink-muted">
-      ↳ Available for new work · Based in {site.location}
+      <motion.span {...arrowPulse} className="mr-1 inline-block">↳</motion.span>
+      <BlurText delay={0.1}>
+        {` Available for new work · Based in ${site.location}`}
+      </BlurText>
     </p>
   );
 
   const currentlyJSX = (
-    <p className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-8">
-      ↳ Currently · {site.currently}
+    <p className="mb-8 font-mono text-xs uppercase tracking-widest text-ink-muted">
+      <motion.span {...arrowPulse} className="mr-1 inline-block">↳</motion.span>
+      <BlurText delay={0.25} emphasize="Acadrix">
+        {` Currently · ${site.currently}`}
+      </BlurText>
     </p>
   );
 
@@ -33,10 +49,30 @@ export function Hero() {
     </h1>
   );
 
+  // Typewriter rotates through honest descriptors of the role.
+  // The tagline below it stays static so the reader has a stable anchor.
   const roleJSX = (
-    <p className="mt-10 max-w-3xl text-lg text-ink-muted md:text-xl leading-relaxed">
-      {site.role}. {site.tagline}
-    </p>
+    <div className="mt-10 max-w-3xl space-y-2">
+      <TextType
+        as="p"
+        text={[
+          "Full-Stack Developer",
+          "Data Analyst",
+          "Building multi-tenant platforms",
+          "Open to new work",
+        ]}
+        className="text-lg text-ink md:text-xl"
+        typingSpeed={60}
+        deletingSpeed={30}
+        pauseDuration={1800}
+        cursorCharacter="_"
+        cursorClassName="text-accent"
+        cursorBlinkDuration={0.6}
+      />
+      <p className="text-base text-ink-muted md:text-lg leading-relaxed">
+        {site.tagline}
+      </p>
+    </div>
   );
 
   const credentialsJSX = (

@@ -6,6 +6,8 @@ export function PageTransition({ children }: { children: ReactNode }) {
   const prefersReducedMotion = useReducedMotion();
   return (
     <motion.div
+      // Same Motion SSR opacity serialization quirk as in Reveal.tsx.
+      suppressHydrationWarning
       initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
       animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
       transition={

@@ -6,21 +6,23 @@ import { motion, useReducedMotion } from "motion/react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 // ---------------------------------------------------------------------------
-// GMTClock — SSR-safe: initializes to placeholder, ticks every 1 s client-side
+// LocalClock — SSR-safe: initializes to placeholder, ticks every 1 s client-side.
+// Pinned to Asia/Kolkata (IST) so the displayed time matches the portfolio
+// owner's actual location regardless of where a visitor is viewing from.
 // ---------------------------------------------------------------------------
-function GMTClock() {
-  const [time, setTime] = useState<string>("--:--:-- GMT");
+function LocalClock() {
+  const [time, setTime] = useState<string>("--:--:-- IST");
 
   useEffect(() => {
     function tick() {
       const now = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "UTC",
+        timeZone: "Asia/Kolkata",
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
         hour12: false,
       }).format(new Date());
-      setTime(`${now} GMT`);
+      setTime(`${now} IST`);
     }
     tick();
     const id = setInterval(tick, 1000);
@@ -85,7 +87,7 @@ export function Header() {
 
         {/* Right: clock · theme toggle */}
         <div className="flex items-center gap-3">
-          <GMTClock />
+          <LocalClock />
           <span className="text-ink-muted/40" aria-hidden="true">·</span>
           <ThemeToggle />
         </div>
